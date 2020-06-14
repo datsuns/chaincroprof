@@ -30,7 +30,11 @@ export default {
   components: {
     HelloWorld,
     ProfileCanvas
-  }
+  },
+  data () {
+    return {
+    }
+  },
 }
 </script>
 
