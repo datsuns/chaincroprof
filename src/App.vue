@@ -2,6 +2,19 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <InputArea>
+      <template v-slot:leftArea>
+        <label for="UserName">User Name</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserInput
+          labelText="UserName"
+          inputType="text"
+          :value="UserName"
+          @input="UserName = $event"
+        />
+      </template>
+    </InputArea>
     <ProfileCanvas
       :height="1080"
       :width="2380"
@@ -24,6 +37,8 @@
 <script>
 import HelloWorld    from './components/HelloWorld.vue'
 import ProfileCanvas from './components/ProfileCanvas.vue'
+import UserInput     from './components/UserInput.vue'
+import InputArea     from './components/InputArea.vue'
 
 import baseProfileImage from "./assets/base.png"
 
@@ -31,7 +46,9 @@ export default {
   name: 'App',
   components: {
     HelloWorld,
-    ProfileCanvas
+    ProfileCanvas,
+    InputArea,
+    UserInput
   },
   data () {
     return {
