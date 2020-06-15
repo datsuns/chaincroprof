@@ -3,8 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <ProfileCanvas
-      :height="parseInt(height)"
-      :width="parseInt(width)"
+      :height="1080"
+      :width="2380"
       :foregroundColor="foregroundColor"
       :backgroundColor="backgroundColor"
       :text="text"
@@ -25,6 +25,8 @@
 import HelloWorld    from './components/HelloWorld.vue'
 import ProfileCanvas from './components/ProfileCanvas.vue'
 
+import baseProfileImage from "./assets/base.png"
+
 export default {
   name: 'App',
   components: {
@@ -33,6 +35,7 @@ export default {
   },
   data () {
     return {
+      baseImage: baseProfileImage,
     }
   },
 }
