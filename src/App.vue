@@ -15,8 +15,8 @@
       </template>
     </InputArea>
     <ProfileCanvas
-      :height="1080"
-      :width="2380"
+      :height="905"
+      :width="1487"
       :fontSize="parseInt(fontSize)"
 
       :textFont="textFont"
