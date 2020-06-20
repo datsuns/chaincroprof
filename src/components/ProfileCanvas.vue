@@ -7,15 +7,10 @@
     >
     </canvas>
     <div hidden>
-      {{ backgroundColor }}
-      {{ foregroundColor }}
-      {{ text }}
-      {{ size }}
-      {{ font }}
-      {{ baseline }}
-      {{ isTransparent }}
-      {{ angle }}
-      {{ profileImage }}
+      {{ fontSize }}
+      {{ textFont }}
+
+      {{ userName }}
     </div>
   </div>
 </template>
@@ -28,17 +23,10 @@ export default {
   props: {
     height: Number,
     width: Number,
-    foregroundColor: String,
-    backgroundColor: String,
-    text: String,
-    size: Number,
-    font: String,
-    baseline: String,
-    angle: Number,
-    isTransparent: Boolean,
+    fontSize: Number,
+    textFont: String,
     baseImage: String,
-    checkImage: String,
-    profileImage: String
+    userName: String,
   },
   mounted () {
     // called from Runtime on initial
@@ -53,14 +41,14 @@ export default {
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
       //ctx.clearRect(0, 0, this.width, this.height)
-      ctx.font = this.size + 'px' + ' ' + this.font
+      ctx.font = this.fontSize + 'px' + ' ' + this.textFont
       //if (this.isTransparent) {
       //  ctx.clearRect(0, 0, this.width, this.height)
       //} else {
       //  ctx.fillStyle = this.backgroundColor
       //  ctx.fillRect(0, 0, this.width, this.height)
       //}
-      ctx.fillStyle = this.foregroundColor
+      //ctx.fillStyle = this.foregroundColor
       //ctx.textAlign = 'center'
       //ctx.textBaseline = this.baseline
       //ctx.save()
@@ -74,16 +62,15 @@ export default {
       //ctx.restore()
 
 
-      let showText = this.text
+      let showText = this.userName
       let target = this
       let frame = new Image()
       //let checkImage = this.checkImage
-      let profile = this.profileImage
       frame.src = this.baseImage
       frame.onload = function(){
         console.log("onload " + showText)
         ctx.drawImage(frame, 0, 0)
-        ctx.fillText(showText[0], 36 + target.size, 58)
+        ctx.fillText(showText[0], 36 + target.fontSize, 58)
         ctx.fillText(showText[1], 150, 58)
         ctx.fillText(showText[2], 200, 58)
         ctx.fillText(showText[3], 250, 58)
@@ -96,20 +83,6 @@ export default {
         ctx.closePath()
         ctx.stroke()
         console.log("onload done")
-        if (profile == null) {
-          const dataURL = document.getElementById('cv').toDataURL('image/png')
-          target.$emit('updated', dataURL)
-        }
-        else {
-          let okFrame = new Image()
-          okFrame.src = profile
-          okFrame.onload = function(){
-            console.log("ok!!")
-            ctx.drawImage(okFrame, 0, 0)
-            const dataURL = document.getElementById('cv').toDataURL('image/png')
-            target.$emit('updated', dataURL)
-          }
-        }
       }
 
 

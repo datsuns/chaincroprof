@@ -3,31 +3,25 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <InputArea>
       <template v-slot:leftArea>
-        <label for="UserName">User Name</label>
+        <label for="userName">User Name</label>
       </template>
       <template v-slot:rightArea>
         <UserInput
-          labelText="UserName"
+          labelText="userName"
           inputType="text"
-          :value="UserName"
-          @input="UserName = $event"
+          :value="userName"
+          @input="userName = $event"
         />
       </template>
     </InputArea>
     <ProfileCanvas
       :height="1080"
       :width="2380"
-      :foregroundColor="foregroundColor"
-      :backgroundColor="backgroundColor"
-      :text="text"
-      :size="parseInt(size)"
-      :font="font"
-      :baseline="baseline"
-      :angle="parseInt(angle)"
-      :isTransparent="isTransparent"
+      :fontSize="parseInt(fontSize)"
+
+      :textFont="textFont"
       :baseImage="baseImage"
-      :checkImage="checkImage"
-      :profileImage="profileImage"
+      :userName="userName"
       v-on:updated="updateDataURL($event)"
     />
   </div>
@@ -49,6 +43,9 @@ export default {
   },
   data () {
     return {
+      fontSize: 64,
+      textFont: 'sans-serif',
+      userName: 'user name',
       baseImage: baseProfileImage,
     }
   },
