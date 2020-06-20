@@ -16,6 +16,9 @@
         />
       </template>
     </InputArea>
+    <Upload
+        v-on:updated="updateProfileImage($event)"
+    />
     <ProfileCanvas
       :height="905"
       :width="1487"
@@ -24,6 +27,7 @@
       :textFont="textFont"
       :baseImage="baseImage"
       :userName="userName"
+      :profileImage="profileImage"
       v-on:updated="updateDataURL($event)"
     />
   </div>
@@ -33,6 +37,7 @@
 import ProfileCanvas from './components/ProfileCanvas.vue'
 import UserInput     from './components/UserInput.vue'
 import InputArea     from './components/InputArea.vue'
+import Upload        from './components/Upload'
 
 import baseProfileImage from "./assets/base.png"
 
@@ -41,7 +46,8 @@ export default {
   components: {
     ProfileCanvas,
     InputArea,
-    UserInput
+    UserInput,
+    Upload
   },
   data () {
     return {
@@ -50,11 +56,16 @@ export default {
       userName: '',
       baseImage: baseProfileImage,
       dataURL: '',
+      profileImage: null
     }
   },
   methods: {
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
+    },
+    updateProfileImage: function (dataURL) {
+      console.log("updateProfileImage")
+      this.profileImage = dataURL
     },
   },
 }

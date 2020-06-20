@@ -11,6 +11,7 @@
       {{ textFont }}
 
       {{ userName }}
+      {{ profileImage }}
     </div>
   </div>
 </template>
@@ -27,6 +28,7 @@ export default {
     textFont: String,
     baseImage: String,
     userName: String,
+    profileImage: String
   },
   mounted () {
     // called from Runtime on initial
@@ -62,9 +64,12 @@ export default {
       //ctx.restore()
 
 
+      let self = this
       let usename = this.userName
       let writefunc = this.writeUserName
+      let userPhotoFunc = this.drawUserPhoto
       let frame = new Image()
+      let profile = this.profileImage
       //let checkImage = this.checkImage
       frame.src = this.baseImage
       frame.onload = function(){
@@ -77,7 +82,16 @@ export default {
         ctx.closePath()
         ctx.stroke()
         console.log("onload done")
+        if (profile == null) {
+          console.log("skip profile update")
+          const dataURL = document.getElementById('cv').toDataURL('image/png')
+          self.$emit('updated', dataURL)
+        }
+        else {
+          userPhotoFunc(ctx, profile)
+        }
       }
+
     },
     writeUserName: function (ctx, name) {
       console.log("writeUserName")
@@ -89,6 +103,20 @@ export default {
       ctx.fillText(name, posx, posy)
       ctx.fillStyle = orgStyle
     },
+
+    drawUserPhoto: function (ctx, src) {
+      var posx = 1150
+      var posy = 200
+
+      let photoFrame = new Image()
+      photoFrame.src = src
+      photoFrame.onload = function(){
+        ctx.drawImage(photoFrame, posx, posy)
+        //const dataURL = document.getElementById('cv').toDataURL('image/png')
+        //self.$emit('updated', dataURL)
+      }
+    },
+
     emitDataURL: function () {
       const dataURL = document.getElementById('cv').toDataURL('image/png')
       this.$emit('updated', dataURL)
