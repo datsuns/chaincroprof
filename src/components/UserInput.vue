@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'AppInput',
+  name: 'UserInput',
   props: {
     labelText: String,
     inputType: String,

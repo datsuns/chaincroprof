@@ -12,6 +12,7 @@
 
       {{ userName }}
       {{ profileImage }}
+      {{ checkBox1 }}
     </div>
   </div>
 </template>
@@ -28,7 +29,8 @@ export default {
     textFont: String,
     baseImage: String,
     userName: String,
-    profileImage: String
+    profileImage: String,
+    checkBox1: Boolean
   },
   mounted () {
     // called from Runtime on initial
@@ -68,6 +70,8 @@ export default {
       let usename = this.userName
       let writefunc = this.writeUserName
       let userPhotoFunc = this.drawUserPhoto
+      let checkBoxFunc = this.drawCheckBox
+      let checkd = this.checkBox1
       let frame = new Image()
       let profile = this.profileImage
       //let checkImage = this.checkImage
@@ -78,7 +82,7 @@ export default {
         ctx.beginPath()
         ctx.lineWidth = 10
         ctx.strokeStyle = '#ff0000'
-        ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
+        //ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
         ctx.closePath()
         ctx.stroke()
         console.log("onload done")
@@ -90,6 +94,7 @@ export default {
         else {
           userPhotoFunc(ctx, profile)
         }
+        checkBoxFunc(ctx, checkd)
       }
 
     },
@@ -115,6 +120,17 @@ export default {
         //const dataURL = document.getElementById('cv').toDataURL('image/png')
         //self.$emit('updated', dataURL)
       }
+    },
+
+    drawCheckBox: function (ctx, checked) {
+      var posx = 250
+      var posy = 815
+      var orgStyle = ctx.fillStyle
+      ctx.fillStyle = '#ff0000'
+      if( checked ){
+        ctx.fillText("✔", posx, posy)
+      }
+      ctx.fillStyle = orgStyle
     },
 
     emitDataURL: function () {

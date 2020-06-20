@@ -16,6 +16,19 @@
         />
       </template>
     </InputArea>
+    <InputArea>
+      <template v-slot:leftArea>
+        <label for="checkBox1">チェックボックス</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserInput
+          labelText="checkBox1"
+          inputType="checkbox"
+          :value="checkBox1"
+          @change="checkBox1 = $event"
+        />
+      </template>
+    </InputArea>
     <Upload
         v-on:updated="updateProfileImage($event)"
     />
@@ -28,6 +41,7 @@
       :baseImage="baseImage"
       :userName="userName"
       :profileImage="profileImage"
+      :checkBox1="checkBox1"
       v-on:updated="updateDataURL($event)"
     />
   </div>
@@ -56,7 +70,8 @@ export default {
       userName: '',
       baseImage: baseProfileImage,
       dataURL: '',
-      profileImage: null
+      profileImage: null,
+      checkBox1: false
     }
   },
   methods: {
