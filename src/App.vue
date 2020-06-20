@@ -47,7 +47,13 @@ export default {
       textFont: 'sans-serif',
       userName: 'user name',
       baseImage: baseProfileImage,
+      dataURL: '',
     }
+  },
+  methods: {
+    updateDataURL: function (dataURL) {
+      this.dataURL = dataURL
+    },
   },
 }
 </script>
