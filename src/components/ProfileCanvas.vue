@@ -62,20 +62,14 @@ export default {
       //ctx.restore()
 
 
-      let showText = this.userName
-      let target = this
+      let usename = this.userName
+      let writefunc = this.writeUserName
       let frame = new Image()
       //let checkImage = this.checkImage
       frame.src = this.baseImage
       frame.onload = function(){
-        console.log("onload " + showText)
         ctx.drawImage(frame, 0, 0)
-        ctx.fillText(showText[0], 36 + target.fontSize, 58)
-        ctx.fillText(showText[1], 150, 58)
-        ctx.fillText(showText[2], 200, 58)
-        ctx.fillText(showText[3], 250, 58)
-        ctx.fillText(showText[4], 300, 58)
-        ctx.fillText("文字を埋める", 200, 358)
+        writefunc(ctx, usename)
         ctx.beginPath()
         ctx.lineWidth = 10
         ctx.strokeStyle = '#ff0000'
@@ -84,8 +78,16 @@ export default {
         ctx.stroke()
         console.log("onload done")
       }
+    },
+    writeUserName: function (ctx, name) {
+      console.log("writeUserName")
+      var posx = 350
+      var posy = 195
 
-
+      var orgStyle = ctx.fillStyle
+      ctx.fillStyle = '#ff0000'
+      ctx.fillText(name, posx, posy)
+      ctx.fillStyle = orgStyle
     },
     emitDataURL: function () {
       const dataURL = document.getElementById('cv').toDataURL('image/png')

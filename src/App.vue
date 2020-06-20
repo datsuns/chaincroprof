@@ -43,7 +43,7 @@ export default {
   },
   data () {
     return {
-      fontSize: 64,
+      fontSize: 50,
       textFont: 'sans-serif',
       userName: 'user name',
       baseImage: baseProfileImage,
