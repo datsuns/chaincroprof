@@ -1,9 +1,11 @@
 <template>
   <div id="app">
+    <!--
     <img alt="Vue logo" src="./assets/logo.png">
+    -->
     <InputArea>
       <template v-slot:leftArea>
-        <label for="userName">User Name</label>
+        <label for="userName">名前</label>
       </template>
       <template v-slot:rightArea>
         <UserInput
@@ -45,7 +47,7 @@ export default {
     return {
       fontSize: 50,
       textFont: 'sans-serif',
-      userName: 'user name',
+      userName: '',
       baseImage: baseProfileImage,
       dataURL: '',
     }
