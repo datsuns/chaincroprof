@@ -11,6 +11,7 @@
       {{ textFont }}
 
       {{ userName }}
+      {{ twitterName }}
       {{ profileImage }}
       {{ checkBox1 }}
     </div>
@@ -29,6 +30,7 @@ export default {
     textFont: String,
     baseImage: String,
     userName: String,
+    twitterName: String,
     profileImage: String,
     checkBox1: Boolean
   },
@@ -68,7 +70,9 @@ export default {
 
       let self = this
       let usename = this.userName
-      let writefunc = this.writeUserName
+      let twittername = this.twitterName
+      let fWriteUser = this.writeUserName
+      let fWriteTwitter = this.writeTwitterName
       let userPhotoFunc = this.drawUserPhoto
       let checkBoxFunc = this.drawCheckBox
       let checkd = this.checkBox1
@@ -78,13 +82,14 @@ export default {
       frame.src = this.baseImage
       frame.onload = function(){
         ctx.drawImage(frame, 0, 0)
-        writefunc(ctx, usename)
-        ctx.beginPath()
-        ctx.lineWidth = 10
-        ctx.strokeStyle = '#ff0000'
-        //ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
-        ctx.closePath()
-        ctx.stroke()
+        fWriteUser(ctx, usename)
+        fWriteTwitter(ctx, twittername)
+        //ctx.beginPath()
+        //ctx.lineWidth = 10
+        //ctx.strokeStyle = '#ff0000'
+        ////ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
+        //ctx.closePath()
+        //ctx.stroke()
         console.log("onload done")
         if (profile == null) {
           console.log("skip profile update")
@@ -98,8 +103,8 @@ export default {
       }
 
     },
+
     writeUserName: function (ctx, name) {
-      console.log("writeUserName")
       var posx = 350
       var posy = 195
 
@@ -107,6 +112,25 @@ export default {
       ctx.fillStyle = '#ff0000'
       ctx.fillText(name, posx, posy)
       ctx.fillStyle = orgStyle
+    },
+
+    writeTwitterName: function (ctx, name) {
+      if( name.length == 0 ){
+        return
+      }
+      var posx = 250
+      var posy = 645
+
+      var orgStyle = ctx.fillStyle
+      ctx.fillStyle = '#ff0000'
+      ctx.fillText('@' + name, posx, posy)
+      ctx.fillStyle = orgStyle
+      ctx.beginPath()
+      ctx.lineWidth = 8
+      ctx.strokeStyle = '#990000'
+      ctx.arc(posx - 65, posy - 5, 50, 0, Math.PI * 2, true)
+      ctx.closePath()
+      ctx.stroke()
     },
 
     drawUserPhoto: function (ctx, src) {

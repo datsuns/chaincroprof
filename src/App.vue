@@ -29,8 +29,21 @@
         />
       </template>
     </InputArea>
+    <InputArea>
+      <template v-slot:leftArea>
+        <label for="twitterName">Twitterアカウント</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserInput
+          labelText="twitterName"
+          inputType="text"
+          :value="twitterName"
+          @input="twitterName = $event"
+        />
+      </template>
+    </InputArea>
     <Upload
-        v-on:updated="updateProfileImage($event)"
+      v-on:updated="updateProfileImage($event)"
     />
     <ProfileCanvas
       :height="905"
@@ -40,6 +53,7 @@
       :textFont="textFont"
       :baseImage="baseImage"
       :userName="userName"
+      :twitterName="twitterName"
       :profileImage="profileImage"
       :checkBox1="checkBox1"
       v-on:updated="updateDataURL($event)"
@@ -65,13 +79,14 @@ export default {
   },
   data () {
     return {
-      fontSize: 50,
-      textFont: 'sans-serif',
-      userName: '',
-      baseImage: baseProfileImage,
-      dataURL: '',
+      fontSize:     50,
+      textFont:     'sans-serif',
+      userName:     '',
+      twitterName:  '',
+      baseImage:    baseProfileImage,
+      dataURL:      '',
       profileImage: null,
-      checkBox1: false
+      checkBox1:    false
     }
   },
   methods: {
