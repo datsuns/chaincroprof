@@ -20,6 +20,7 @@
 
 <script>
 /* eslint-disable no-console */
+import loadImage from 'blueimp-load-image';
 
 export default {
   name: 'AppCanvas',
@@ -32,6 +33,7 @@ export default {
     userName: String,
     twitterName: String,
     profileImage: String,
+    resizedProfileImg: null,
     checkBox1: Boolean
   },
   mounted () {
@@ -42,31 +44,19 @@ export default {
   },
   methods: {
     draw: function () {
-      console.log("draw")
-      //console.log("profileImage " + this.profileImage) 
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
-      //ctx.clearRect(0, 0, this.width, this.height)
       ctx.font = this.fontSize + 'px' + ' ' + this.textFont
-      //if (this.isTransparent) {
-      //  ctx.clearRect(0, 0, this.width, this.height)
-      //} else {
-      //  ctx.fillStyle = this.backgroundColor
-      //  ctx.fillRect(0, 0, this.width, this.height)
-      //}
-      //ctx.fillStyle = this.foregroundColor
-      //ctx.textAlign = 'center'
-      //ctx.textBaseline = this.baseline
-      //ctx.save()
-      //ctx.translate(this.width / 2, this.height / 2)
-      //ctx.rotate(this.angle * Math.PI / 180)
-      //ctx.fillText(this.text, 0, 0)
-      //ctx.lineWidth = 20
-      //ctx.moveTo(0, 0)
-      //ctx.lineTo(50, 50)
-      //ctx.stroke()
-      //ctx.restore()
 
+      const file = this.profileImage;
+      loadImage.parseMetaData(file, () => {
+        const options = {
+          maxHeight: 100,
+          maxWidth: 100,
+          canvas: true
+        };
+        this.displayImage(file, options);
+      });
 
       let self = this
       let usename = this.userName
@@ -77,6 +67,7 @@ export default {
       let checkBoxFunc = this.drawCheckBox
       let checkd = this.checkBox1
       let frame = new Image()
+      //let profile = this.resizedProfileImg
       let profile = this.profileImage
       //let checkImage = this.checkImage
       frame.src = this.baseImage
@@ -102,6 +93,47 @@ export default {
         checkBoxFunc(ctx, checkd)
       }
 
+    },
+
+    drawBaseImage: function () {
+      const cv = document.getElementById('cv')
+      const ctx = cv.getContext('2d')
+      ctx.font = this.fontSize + 'px' + ' ' + this.textFont
+      let self = this
+      let usename = this.userName
+      let twittername = this.twitterName
+      let fWriteUser = this.writeUserName
+      let fWriteTwitter = this.writeTwitterName
+      let userPhotoFunc = this.drawUserPhoto
+      let checkBoxFunc = this.drawCheckBox
+      let checkd = this.checkBox1
+      let frame = new Image()
+      console.log("resizedProfileImg " + this.resizedProfileImg)
+      let profile = this.resizedProfileImg
+      //let profile = this.profileImage
+      //let checkImage = this.checkImage
+      frame.src = this.baseImage
+      frame.onload = function(){
+        ctx.drawImage(frame, 0, 0)
+        fWriteUser(ctx, usename)
+        fWriteTwitter(ctx, twittername)
+        //ctx.beginPath()
+        //ctx.lineWidth = 10
+        //ctx.strokeStyle = '#ff0000'
+        ////ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
+        //ctx.closePath()
+        //ctx.stroke()
+        console.log("onload done")
+        if (profile == null) {
+          console.log("skip profile update")
+          const dataURL = document.getElementById('cv').toDataURL('image/png')
+          self.$emit('updated', dataURL)
+        }
+        else {
+          userPhotoFunc(ctx, profile)
+        }
+        checkBoxFunc(ctx, checkd)
+      }
     },
 
     writeUserName: function (ctx, name) {
@@ -155,6 +187,34 @@ export default {
         ctx.fillText("✔", posx, posy)
       }
       ctx.fillStyle = orgStyle
+    },
+
+    displayImage(file, options) {
+      loadImage(
+        file,
+        async (canvas) => {
+          const data = canvas.toDataURL(file.type);
+          // data_url形式をblob objectに変換
+          const blob = this.base64ToBlob(data, file.type);
+          // objectのURLを生成
+          const url = window.URL.createObjectURL(blob);
+
+          this.resizedProfileImg = url;
+          this.drawBaseImage();
+        },
+        options
+      );
+    },
+
+    base64ToBlob(base64, fileType) {
+      const bin = atob(base64.replace(/^.*,/, ''));
+      const buffer = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) {
+        buffer[i] = bin.charCodeAt(i);
+      }
+      return new Blob([buffer.buffer], {
+        type: fileType ? fileType : 'image/png'
+      });
     },
 
     emitDataURL: function () {
