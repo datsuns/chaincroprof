@@ -193,24 +193,24 @@ export default {
       loadImage(
         file,
         async (canvas) => {
-          const data = canvas.toDataURL(file.type);
+          const data = canvas.toDataURL(file.type)
           // data_url形式をblob objectに変換
-          const blob = this.base64ToBlob(data, file.type);
+          const blob = this.base64ToBlob(data, file.type)
           // objectのURLを生成
-          const url = window.URL.createObjectURL(blob);
+          const url = window.URL.createObjectURL(blob)
 
-          this.resizedProfileImg = url;
-          this.drawBaseImage();
+          this.resizedProfileImg = url
+          this.drawBaseImage()
         },
         options
       );
     },
 
     base64ToBlob(base64, fileType) {
-      const bin = atob(base64.replace(/^.*,/, ''));
-      const buffer = new Uint8Array(bin.length);
+      const bin = atob(base64.replace(/^.*,/, ''))
+      const buffer = new Uint8Array(bin.length)
       for (let i = 0; i < bin.length; i++) {
-        buffer[i] = bin.charCodeAt(i);
+        buffer[i] = bin.charCodeAt(i)
       }
       return new Blob([buffer.buffer], {
         type: fileType ? fileType : 'image/png'
