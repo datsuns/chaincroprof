@@ -44,58 +44,26 @@ export default {
   },
   methods: {
     draw: function () {
-      const cv = document.getElementById('cv')
-      const ctx = cv.getContext('2d')
-      ctx.font = this.fontSize + 'px' + ' ' + this.textFont
+      if( this.profileImage != null ){
+        this.loadUserProfileImage(this.profileImage, this.drawBaseImage)
+      }
+      else{
+        this.drawBaseImage(null)
+      }
+    },
 
-      const file = this.profileImage;
-      loadImage.parseMetaData(file, () => {
+    loadUserProfileImage: function(imageSrc, callback) {
+      loadImage.parseMetaData(imageSrc, () => {
         const options = {
           maxHeight: 100,
           maxWidth: 100,
           canvas: true
         };
-        this.displayImage(file, options);
+        this.resizeUserProfileImage(imageSrc, options, callback);
       });
-
-      let self = this
-      let usename = this.userName
-      let twittername = this.twitterName
-      let fWriteUser = this.writeUserName
-      let fWriteTwitter = this.writeTwitterName
-      let userPhotoFunc = this.drawUserPhoto
-      let checkBoxFunc = this.drawCheckBox
-      let checkd = this.checkBox1
-      let frame = new Image()
-      //let profile = this.resizedProfileImg
-      let profile = this.profileImage
-      //let checkImage = this.checkImage
-      frame.src = this.baseImage
-      frame.onload = function(){
-        ctx.drawImage(frame, 0, 0)
-        fWriteUser(ctx, usename)
-        fWriteTwitter(ctx, twittername)
-        //ctx.beginPath()
-        //ctx.lineWidth = 10
-        //ctx.strokeStyle = '#ff0000'
-        ////ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
-        //ctx.closePath()
-        //ctx.stroke()
-        console.log("onload done")
-        if (profile == null) {
-          console.log("skip profile update")
-          const dataURL = document.getElementById('cv').toDataURL('image/png')
-          self.$emit('updated', dataURL)
-        }
-        else {
-          userPhotoFunc(ctx, profile)
-        }
-        checkBoxFunc(ctx, checkd)
-      }
-
     },
 
-    drawBaseImage: function () {
+    drawBaseImage: function (userProfileImage) {
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
       ctx.font = this.fontSize + 'px' + ' ' + this.textFont
@@ -108,10 +76,7 @@ export default {
       let checkBoxFunc = this.drawCheckBox
       let checkd = this.checkBox1
       let frame = new Image()
-      console.log("resizedProfileImg " + this.resizedProfileImg)
-      let profile = this.resizedProfileImg
-      //let profile = this.profileImage
-      //let checkImage = this.checkImage
+      let profile = userProfileImage
       frame.src = this.baseImage
       frame.onload = function(){
         ctx.drawImage(frame, 0, 0)
@@ -183,7 +148,7 @@ export default {
       ctx.fillStyle = orgStyle
     },
 
-    displayImage(file, options) {
+    resizeUserProfileImage(file, options, callback) {
       loadImage(
         file,
         async (canvas) => {
@@ -194,7 +159,7 @@ export default {
           const url = window.URL.createObjectURL(blob)
 
           this.resizedProfileImg = url
-          this.drawBaseImage()
+          callback(this.resizedProfileImg)
         },
         options
       );
