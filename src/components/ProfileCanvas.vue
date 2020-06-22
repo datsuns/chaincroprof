@@ -117,12 +117,6 @@ export default {
         ctx.drawImage(frame, 0, 0)
         fWriteUser(ctx, usename)
         fWriteTwitter(ctx, twittername)
-        //ctx.beginPath()
-        //ctx.lineWidth = 10
-        //ctx.strokeStyle = '#ff0000'
-        ////ctx.arc(390, 565, 50, 0, Math.PI * 2, true)
-        //ctx.closePath()
-        //ctx.stroke()
         console.log("onload done")
         if (profile == null) {
           console.log("skip profile update")
