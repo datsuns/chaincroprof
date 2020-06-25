@@ -72,8 +72,6 @@ export default {
       let self = this
       let usename = this.userName
       let twittername = this.twitterName
-      let fWriteUser = this.writeUserName
-      let fWriteTwitter = this.writeTwitterName
       let userPhotoFunc = this.drawUserPhoto
       let checkBoxFunc = this.drawCheckBox
       let checkd = this.checkBox1
@@ -82,8 +80,8 @@ export default {
       frame.src = this.baseImage
       frame.onload = function(){
         ctx.drawImage(frame, 0, 0)
-        fWriteUser(ctx, usename)
-        fWriteTwitter(ctx, twittername)
+        self.writeUserName(ctx, usename)
+        self.writeTwitterName(ctx, twittername)
         checkBoxFunc(ctx, checkd)
         console.log("onload done")
         if (profile == null) {
