@@ -36,12 +36,14 @@ export default {
     resizedProfileImg: null,
     checkBox1: Boolean
   },
+
   mounted () {
     // called from Runtime on initial
     console.log("mounted")
     this.draw()
     this.emitDataURL()
   },
+
   methods: {
     draw: function () {
       if( this.profileImage != null ){
@@ -179,9 +181,9 @@ export default {
     emitDataURL: function () {
       const dataURL = document.getElementById('cv').toDataURL('image/png')
       this.$emit('updated', dataURL)
-      console.log("emitDataURL")
     }
   },
+
   updated () {
     console.log("updated")
     this.draw()
