@@ -20,7 +20,7 @@
 
 <script>
 /* eslint-disable no-console */
-import loadImage from 'blueimp-load-image';
+import blueimpLoadImage from 'blueimp-load-image';
 
 export default {
   name: 'AppCanvas',
@@ -47,15 +47,55 @@ export default {
   methods: {
     draw: function () {
       if( this.profileImage != null ){
-        this.loadUserProfileImage(this.profileImage, this.drawBaseImage)
+        this.resizeImage(this.profileImage, 100, 200).then(this.drawBaseImage)
+        //this.loadUserProfileImage(this.profileImage, this.drawBaseImage)
       }
       else{
         this.drawBaseImage(null)
       }
     },
 
+    loadImage: function(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = (e) => reject(e);
+        img.src = src;
+        });
+    },
+
+    resizeImage: function(src, x, y) {
+      console.log("resize start")
+      return new Promise((ok) => {
+        blueimpLoadImage.parseMetaData(src, () => {
+          const options = {
+            maxHeight: x,
+            maxWidth: y,
+            canvas: true
+          }
+
+          blueimpLoadImage(
+            src,
+            async (canvas) => {
+              const data = canvas.toDataURL(src.type)
+              // data_url形式をblob objectに変換
+              const blob = this.base64ToBlob(data, src.type)
+              // objectのURLを生成
+              const url = window.URL.createObjectURL(blob)
+
+              //this.resizedProfileImg = url
+              //ok(this.resizedProfileImg)
+              console.log("resize done")
+              ok(url)
+            },
+            options
+          );
+        })
+      })
+    },
+
     loadUserProfileImage: function(imageSrc, callback) {
-      loadImage.parseMetaData(imageSrc, () => {
+      blueimpLoadImage.parseMetaData(imageSrc, () => {
         const options = {
           maxHeight: 100,
           maxWidth: 100,
@@ -66,33 +106,54 @@ export default {
     },
 
     drawBaseImage: function (userProfileImage) {
+      console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
       ctx.font = this.fontSize + 'px' + ' ' + this.textFont
-      let self = this
-      let usename = this.userName
-      let twittername = this.twitterName
-      let userPhotoFunc = this.drawUserPhoto
-      let checkBoxFunc = this.drawCheckBox
-      let checkd = this.checkBox1
-      let frame = new Image()
+      //let self = this
+      //let usename = this.userName
+      //let twittername = this.twitterName
+      //let fWriteUser = this.writeUserName
+      //let fWriteTwitter = this.writeTwitterName
+      //let userPhotoFunc = this.drawUserPhoto
+      //let checkBoxFunc = this.drawCheckBox
+      //let checkd = this.checkBox1
+      //let frame = new Image()
       let profile = userProfileImage
-      frame.src = this.baseImage
-      frame.onload = function(){
-        ctx.drawImage(frame, 0, 0)
-        self.writeUserName(ctx, usename)
-        self.writeTwitterName(ctx, twittername)
-        checkBoxFunc(ctx, checkd)
-        console.log("onload done")
+      //console.log(profile)
+      this.loadImage(this.baseImage).then(res => {
+        //console.log(res.width, res.height);
+        ctx.drawImage(res, 0, 0)
+        this.writeUserName(ctx, this.userName)
+        this.writeTwitterName(ctx, this.twitterName)
+        this.drawCheckBox(ctx, this.checkBox1)
         if (profile == null) {
           console.log("skip profile update")
           const dataURL = document.getElementById('cv').toDataURL('image/png')
-          self.$emit('updated', dataURL)
+          this.$emit('updated', dataURL)
         }
         else {
-          userPhotoFunc(ctx, profile)
+          this.drawUserPhoto(ctx, profile)
         }
-      }
+      }).catch(e => {
+        console.log('onload error', e);
+      });
+      //frame.src = this.baseImage
+      //frame.onload = function(){
+      //  ctx.drawImage(frame, 0, 0)
+      //  fWriteUser(ctx, usename)
+      //  fWriteTwitter(ctx, twittername)
+      //  checkBoxFunc(ctx, checkd)
+      //  console.log("onload done")
+      //  if (profile == null) {
+      //    console.log("skip profile update")
+      //    const dataURL = document.getElementById('cv').toDataURL('image/png')
+      //    self.$emit('updated', dataURL)
+      //  }
+      //  else {
+      //    userPhotoFunc(ctx, profile)
+      //  }
+      //}
     },
 
     writeUserName: function (ctx, name) {
@@ -128,13 +189,16 @@ export default {
       var posx = 1150
       var posy = 200
 
-      let photoFrame = new Image()
-      photoFrame.src = src
-      photoFrame.onload = function(){
-        ctx.drawImage(photoFrame, posx, posy)
+      //let photoFrame = new Image()
+      //photoFrame.src = src
+      //photoFrame.onload = function(){
+      this.loadImage(src).then(res => {
+        ctx.drawImage(res, posx, posy)
         const dataURL = document.getElementById('cv').toDataURL('image/png')
-        self.$emit('updated', dataURL)
-      }
+        this.$emit('updated', dataURL)
+      }).catch(e => {
+        console.log('onload error', e);
+      });
     },
 
     drawCheckBox: function (ctx, checked) {
@@ -149,7 +213,7 @@ export default {
     },
 
     resizeUserProfileImage(file, options, callback) {
-      loadImage(
+      blueimpLoadImage(
         file,
         async (canvas) => {
           const data = canvas.toDataURL(file.type)
