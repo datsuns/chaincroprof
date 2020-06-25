@@ -45,6 +45,7 @@
     <Upload
       v-on:updated="updateProfileImage($event)"
     />
+    <a :href="dataURL" download="image.png">画像ダウンロード</a>
     <ProfileCanvas
       :height="905"
       :width="1487"

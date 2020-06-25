@@ -82,6 +82,7 @@ export default {
         ctx.drawImage(frame, 0, 0)
         fWriteUser(ctx, usename)
         fWriteTwitter(ctx, twittername)
+        checkBoxFunc(ctx, checkd)
         console.log("onload done")
         if (profile == null) {
           console.log("skip profile update")
@@ -91,7 +92,6 @@ export default {
         else {
           userPhotoFunc(ctx, profile)
         }
-        checkBoxFunc(ctx, checkd)
       }
     },
 
@@ -132,8 +132,8 @@ export default {
       photoFrame.src = src
       photoFrame.onload = function(){
         ctx.drawImage(photoFrame, posx, posy)
-        //const dataURL = document.getElementById('cv').toDataURL('image/png')
-        //self.$emit('updated', dataURL)
+        const dataURL = document.getElementById('cv').toDataURL('image/png')
+        self.$emit('updated', dataURL)
       }
     },
 
