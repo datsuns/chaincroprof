@@ -24,7 +24,7 @@
 import blueimpLoadImage from 'blueimp-load-image';
 
 export default {
-  name: 'AppCanvas',
+  name: 'ProfileCanvas',
   props: {
     height: Number,
     width: Number,

@@ -1,8 +1,17 @@
 <template>
   <div id="app">
-    <!--
-    <img alt="Vue logo" src="./assets/logo.png">
-    -->
+    <InputArea>
+      <template v-slot:leftArea>
+        <label for="backgroundImage">ベース画像</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserSelect
+          labelText="backgroundImage"
+          :optionList = "baseImages"
+          @select="updateBaseImage($event)"
+        />
+      </template>
+    </InputArea>
     <InputArea>
       <template v-slot:leftArea>
         <label for="userName">名前</label>
@@ -79,10 +88,16 @@
 <script>
 import ProfileCanvas from './components/ProfileCanvas.vue'
 import UserInput     from './components/UserInput.vue'
+import UserSelect    from './components/UserSelect.vue'
 import InputArea     from './components/InputArea.vue'
 import Upload        from './components/Upload'
 
-import baseProfileImage from "./assets/_images_common_card_01a.png"
+import baseProfileImage1 from "./assets/_images_common_card_01a.png"
+import baseProfileImage2 from "./assets/_images_common_card_02a.png"
+import baseProfileImage3 from "./assets/_images_common_card_03a.png"
+import baseProfileImage4 from "./assets/_images_common_card_04a.png"
+import baseProfileImage5 from "./assets/_images_common_card_05a.png"
+import baseProfileImage6 from "./assets/_images_common_card_06a.png"
 
 export default {
   name: 'App',
@@ -90,7 +105,8 @@ export default {
     ProfileCanvas,
     InputArea,
     UserInput,
-    Upload
+    UserSelect,
+    Upload,
   },
   data () {
     return {
@@ -99,10 +115,36 @@ export default {
       userName:     '',
       friendID:     '',
       twitterName:  '',
-      baseImage:    baseProfileImage,
+      baseImage:    baseProfileImage1,
       dataURL:      '',
       profileImage: null,
-      checkBox1:    false
+      checkBox1:    false,
+      baseImages:[
+        {
+          name: 'ヘリオス',
+           img: baseProfileImage1,
+        },
+        {
+          name: 'アリーチェ',
+           img: baseProfileImage2,
+        },
+        {
+          name: 'エシャル',
+           img: baseProfileImage3,
+        },
+        {
+          name: 'セレステ',
+           img: baseProfileImage4,
+        },
+        {
+          name: 'アマツ',
+           img: baseProfileImage5,
+        },
+        {
+          name: 'つかむ',
+           img: baseProfileImage6,
+        },
+      ],
     }
   },
   methods: {
@@ -112,6 +154,10 @@ export default {
     updateProfileImage: function (dataURL) {
       console.log("updateProfileImage")
       this.profileImage = dataURL
+    },
+    updateBaseImage: function (img) {
+      //this.$set(this, "baseImage", img)
+      this.baseImage = img
     },
   },
 }
