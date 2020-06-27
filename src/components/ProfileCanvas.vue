@@ -116,8 +116,8 @@ export default {
     },
 
     writeUserName: function (ctx, name) {
-      var posx = 350
-      var posy = 195
+      var posx = 750
+      var posy = 250
 
       var orgStyle = ctx.fillStyle
       ctx.fillStyle = '#ff0000'
