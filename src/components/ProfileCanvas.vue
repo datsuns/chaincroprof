@@ -47,8 +47,7 @@ export default {
   methods: {
     draw: function () {
       if( this.profileImage != null ){
-        this.resizeImage(this.profileImage, 100, 200).then(this.drawBaseImage)
-        //this.loadUserProfileImage(this.profileImage, this.drawBaseImage)
+        this.resizeImage(this.profileImage, 500, 500).then(this.drawBaseImage)
       }
       else{
         this.drawBaseImage(null)
@@ -66,7 +65,7 @@ export default {
 
     resizeImage: function(src, x, y) {
       console.log("resize start")
-      return new Promise((ok) => {
+      return new Promise((loaded) => {
         blueimpLoadImage.parseMetaData(src, () => {
           const options = {
             maxHeight: x,
@@ -86,7 +85,7 @@ export default {
               //this.resizedProfileImg = url
               //ok(this.resizedProfileImg)
               console.log("resize done")
-              ok(url)
+              loaded(url)
             },
             options
           );
@@ -94,34 +93,22 @@ export default {
       })
     },
 
-    loadUserProfileImage: function(imageSrc, callback) {
-      blueimpLoadImage.parseMetaData(imageSrc, () => {
-        const options = {
-          maxHeight: 100,
-          maxWidth: 100,
-          canvas: true
-        };
-        this.resizeUserProfileImage(imageSrc, options, callback);
-      });
-    },
-
     drawBaseImage: function (userProfileImage) {
       console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
-      ctx.font = this.fontSize + 'px' + ' ' + this.textFont
-      let profile = userProfileImage
       this.loadImage(this.baseImage).then(res => {
+        ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)
         this.writeUserName(ctx, this.userName)
         this.writeTwitterName(ctx, this.twitterName)
         this.drawCheckBox(ctx, this.checkBox1)
-        if (profile == null) {
+        if (userProfileImage == null) {
           console.log("skip profile update")
           this.emitDataURL()
         }
         else {
-          this.drawUserPhoto(ctx, profile)
+          this.drawUserPhoto(ctx, userProfileImage)
         }
       }).catch(e => {
         console.log('onload error', e);
@@ -179,23 +166,6 @@ export default {
         ctx.fillText("✔", posx, posy)
       }
       ctx.fillStyle = orgStyle
-    },
-
-    resizeUserProfileImage(file, options, callback) {
-      blueimpLoadImage(
-        file,
-        async (canvas) => {
-          const data = canvas.toDataURL(file.type)
-          // data_url形式をblob objectに変換
-          const blob = this.base64ToBlob(data, file.type)
-          // objectのURLを生成
-          const url = window.URL.createObjectURL(blob)
-
-          this.resizedProfileImg = url
-          callback(this.resizedProfileImg)
-        },
-        options
-      );
     },
 
     base64ToBlob(base64, fileType) {
