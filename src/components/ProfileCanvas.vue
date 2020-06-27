@@ -11,6 +11,7 @@
       {{ textFont }}
 
       {{ userName }}
+      {{ friendID }}
       {{ twitterName }}
       {{ profileImage }}
       {{ checkBox1 }}
@@ -31,6 +32,7 @@ export default {
     textFont: String,
     baseImage: String,
     userName: String,
+    friendID: String,
     twitterName: String,
     profileImage: String,
     resizedProfileImg: null,
@@ -101,6 +103,7 @@ export default {
         ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)
         this.writeUserName(ctx, this.userName)
+        this.writeFriendID(ctx, this.friendID)
         this.writeTwitterName(ctx, this.twitterName)
         this.drawCheckBox(ctx, this.checkBox1)
         if (userProfileImage == null) {
@@ -115,15 +118,25 @@ export default {
       });
     },
 
+    writeSimpleText: function (ctx, s, x, y) {
+      var orgStyle = ctx.fillStyle
+      ctx.fillStyle = '#ff0000'
+      ctx.fillText(s, x, y)
+      ctx.fillStyle = orgStyle
+    },
+
     writeUserName: function (ctx, name) {
       var posx = 750
       var posy = 250
-
-      var orgStyle = ctx.fillStyle
-      ctx.fillStyle = '#ff0000'
-      ctx.fillText(name, posx, posy)
-      ctx.fillStyle = orgStyle
+      this.writeSimpleText(ctx, name, posx, posy)
     },
+
+    writeFriendID: function (ctx, name) {
+      var posx = 750
+      var posy = 340
+      this.writeSimpleText(ctx, name, posx, posy)
+    },
+
 
     writeTwitterName: function (ctx, name) {
       if( name.length == 0 ){

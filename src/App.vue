@@ -18,6 +18,19 @@
     </InputArea>
     <InputArea>
       <template v-slot:leftArea>
+        <label for="friendID">フレンドID</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserInput
+          labelText="friendID"
+          inputType="text"
+          :value="friendID"
+          @input="friendID = $event"
+        />
+      </template>
+    </InputArea>
+    <InputArea>
+      <template v-slot:leftArea>
         <label for="checkBox1">チェックボックス</label>
       </template>
       <template v-slot:rightArea>
@@ -54,6 +67,7 @@
       :textFont="textFont"
       :baseImage="baseImage"
       :userName="userName"
+      :friendID="friendID"
       :twitterName="twitterName"
       :profileImage="profileImage"
       :checkBox1="checkBox1"
@@ -83,6 +97,7 @@ export default {
       fontSize:     50,
       textFont:     'sans-serif',
       userName:     '',
+      friendID:     '',
       twitterName:  '',
       baseImage:    baseProfileImage,
       dataURL:      '',
