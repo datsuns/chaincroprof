@@ -49,7 +49,7 @@ export default {
   methods: {
     draw: function () {
       if( this.profileImage != null ){
-        this.resizeImage(this.profileImage, 500, 500).then(this.drawBaseImage)
+        this.resizeImage(this.profileImage, 300, 700).then(this.drawBaseImage)
       }
       else{
         this.drawBaseImage(null)
@@ -99,6 +99,7 @@ export default {
       console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
+      ctx.clearRect(0, 0, this.width, this.height)
       this.loadImage(this.baseImage).then(res => {
         ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)
@@ -158,8 +159,8 @@ export default {
     },
 
     drawUserPhoto: function (ctx, src) {
-      var posx = 1150
-      var posy = 200
+      var posx = 45
+      var posy = 45
 
       this.loadImage(src).then(res => {
         ctx.drawImage(res, posx, posy)
