@@ -49,7 +49,7 @@ export default {
   methods: {
     draw: function () {
       if( this.profileImage != null ){
-        this.resizeImage(this.profileImage, 300, 700).then(this.drawBaseImage)
+        this.resizeImage(this.profileImage, 500, 800).then(this.drawBaseImage)
       }
       else{
         this.drawBaseImage(null)
