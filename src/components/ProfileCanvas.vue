@@ -110,27 +110,15 @@ export default {
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
       ctx.font = this.fontSize + 'px' + ' ' + this.textFont
-      //let self = this
-      //let usename = this.userName
-      //let twittername = this.twitterName
-      //let fWriteUser = this.writeUserName
-      //let fWriteTwitter = this.writeTwitterName
-      //let userPhotoFunc = this.drawUserPhoto
-      //let checkBoxFunc = this.drawCheckBox
-      //let checkd = this.checkBox1
-      //let frame = new Image()
       let profile = userProfileImage
-      //console.log(profile)
       this.loadImage(this.baseImage).then(res => {
-        //console.log(res.width, res.height);
         ctx.drawImage(res, 0, 0)
         this.writeUserName(ctx, this.userName)
         this.writeTwitterName(ctx, this.twitterName)
         this.drawCheckBox(ctx, this.checkBox1)
         if (profile == null) {
           console.log("skip profile update")
-          const dataURL = document.getElementById('cv').toDataURL('image/png')
-          this.$emit('updated', dataURL)
+          this.emitDataURL()
         }
         else {
           this.drawUserPhoto(ctx, profile)
@@ -138,22 +126,6 @@ export default {
       }).catch(e => {
         console.log('onload error', e);
       });
-      //frame.src = this.baseImage
-      //frame.onload = function(){
-      //  ctx.drawImage(frame, 0, 0)
-      //  fWriteUser(ctx, usename)
-      //  fWriteTwitter(ctx, twittername)
-      //  checkBoxFunc(ctx, checkd)
-      //  console.log("onload done")
-      //  if (profile == null) {
-      //    console.log("skip profile update")
-      //    const dataURL = document.getElementById('cv').toDataURL('image/png')
-      //    self.$emit('updated', dataURL)
-      //  }
-      //  else {
-      //    userPhotoFunc(ctx, profile)
-      //  }
-      //}
     },
 
     writeUserName: function (ctx, name) {
@@ -189,13 +161,9 @@ export default {
       var posx = 1150
       var posy = 200
 
-      //let photoFrame = new Image()
-      //photoFrame.src = src
-      //photoFrame.onload = function(){
       this.loadImage(src).then(res => {
         ctx.drawImage(res, posx, posy)
-        const dataURL = document.getElementById('cv').toDataURL('image/png')
-        this.$emit('updated', dataURL)
+        this.emitDataURL()
       }).catch(e => {
         console.log('onload error', e);
       });
@@ -205,6 +173,7 @@ export default {
       var posx = 250
       var posy = 815
       var orgStyle = ctx.fillStyle
+
       ctx.fillStyle = '#ff0000'
       if( checked ){
         ctx.fillText("✔", posx, posy)
