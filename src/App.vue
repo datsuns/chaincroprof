@@ -47,8 +47,8 @@
     />
     <a :href="dataURL" download="image.png">画像ダウンロード</a>
     <ProfileCanvas
-      :height="905"
-      :width="1487"
+      :height="650"
+      :width="1075"
       :fontSize="parseInt(fontSize)"
 
       :textFont="textFont"
@@ -68,7 +68,7 @@ import UserInput     from './components/UserInput.vue'
 import InputArea     from './components/InputArea.vue'
 import Upload        from './components/Upload'
 
-import baseProfileImage from "./assets/base.png"
+import baseProfileImage from "./assets/_images_common_card_01a.png"
 
 export default {
   name: 'App',
