@@ -152,12 +152,14 @@ export default {
       this.dataURL = dataURL
     },
     updateProfileImage: function (dataURL) {
-      console.log("updateProfileImage")
+      console.log("updateProfileImage:" + dataURL)
       this.profileImage = dataURL
     },
-    updateBaseImage: function (img) {
-      //this.$set(this, "baseImage", img)
-      this.baseImage = img
+    updateBaseImage: function (name) {
+      let entry = this.baseImages.find(x => x.name === name)
+      //this.$set(this, "baseImage", baseProfileImage6)
+      console.log("updateBaseImage")
+      this.baseImage = entry.img
     },
   },
 }

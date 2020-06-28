@@ -10,6 +10,7 @@
       {{ fontSize }}
       {{ textFont }}
 
+      {{ baseImage }}
       {{ userName }}
       {{ friendID }}
       {{ twitterName }}
@@ -42,6 +43,12 @@ export default {
   mounted () {
     // called from Runtime on initial
     console.log("mounted")
+    this.draw()
+    this.emitDataURL()
+  },
+
+  updated () {
+    console.log("updated")
     this.draw()
     this.emitDataURL()
   },
@@ -195,15 +202,10 @@ export default {
 
     emitDataURL: function () {
       const dataURL = document.getElementById('cv').toDataURL('image/png')
+      //console.log(dataURL)
       this.$emit('updated', dataURL)
     }
   },
-
-  updated () {
-    console.log("updated")
-    this.draw()
-    this.emitDataURL()
-  }
 }
 </script>
 

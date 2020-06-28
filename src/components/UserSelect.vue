@@ -1,10 +1,10 @@
 <template>
   <div>
-    <select @change="$emit('select', $event.target.value)">
+    <select @change="changedCallback($event.target.value)">
       <option
         v-for="optionItem in optionList"
         :key="optionItem.name"
-        :value="optionItem.img"
+        :value="optionItem.name"
       >{{ optionItem.name }}</option>
     </select>
   </div>
@@ -15,8 +15,14 @@ export default {
   name: 'UserSelect',
   props: {
     labelText: String,
-    optionList: Array
-  }
+    optionList: Array,
+  },
+  methods: {
+    changedCallback: function(value){
+      this.$emit('select', value)
+    },
+
+  },
 }
 </script>
 
