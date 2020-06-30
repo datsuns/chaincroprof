@@ -64,6 +64,25 @@
         />
       </template>
     </InputArea>
+    <InputArea>
+      <template v-slot:leftArea>
+        <label for="userPhotoStartX">横位置</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserInput
+          labelText="userPhotoStartX"
+          inputType="text"
+          :value="userPhotoStartX"
+          @input="userPhotoStartX = $event"
+        />
+        <UserInput
+          labelText="userPhotoStartY"
+          inputType="text"
+          :value="userPhotoStartY"
+          @input="userPhotoStartY = $event"
+        />
+      </template>
+    </InputArea>
     <Upload
       v-on:updated="updateProfileImage($event)"
     />
@@ -71,8 +90,8 @@
     <ProfileCanvas
       :height="650"
       :width="1075"
-      :userPhotoStartX="userPhotoStartX"
-      :userPhotoStartY="userPhotoStartY"
+      :userPhotoStartX="parseInt(userPhotoStartX)"
+      :userPhotoStartY="parseInt(userPhotoStartY)"
       :fontSize="parseInt(fontSize)"
 
       :textFont="textFont"
@@ -113,8 +132,8 @@ export default {
   data () {
     return {
       fontSize:        50,
-      userPhotoStartX: 45,
-      userPhotoStartY: 45,
+      userPhotoStartX: "45",
+      userPhotoStartY: "45",
       textFont:        'sans-serif',
       userName:        '',
       friendID:        '',
