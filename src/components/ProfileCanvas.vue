@@ -102,11 +102,8 @@ export default {
       })
     },
 
-    drawBaseImage: function (userProfileImage) {
-      console.log("drawBaseImage")
-      const cv = document.getElementById('cv')
-      const ctx = cv.getContext('2d')
-      ctx.clearRect(0, 0, this.width, this.height)
+    drawBaseImageMain: function (ctx) {
+      //ctx.clearRect(0, 0, this.width, this.height)
       this.loadImage(this.baseImage).then(res => {
         ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)
@@ -114,16 +111,22 @@ export default {
         this.writeFriendID(ctx, this.friendID)
         this.writeTwitterName(ctx, this.twitterName)
         this.drawCheckBox(ctx, this.checkBox1)
-        if (userProfileImage == null) {
-          console.log("skip profile update")
-          this.emitDataURL()
-        }
-        else {
-          this.drawUserPhoto(ctx, userProfileImage)
-        }
+        this.emitDataURL()
       }).catch(e => {
         console.log('onload error', e);
-      });
+      })
+    },
+
+    drawBaseImage: function (userProfileImage) {
+      console.log("drawBaseImage")
+      const cv = document.getElementById('cv')
+      const ctx = cv.getContext('2d')
+      if (userProfileImage == null ){
+        this.drawBaseImageMain(ctx)
+      }
+      else{
+        this.drawUserPhoto(ctx, userProfileImage).then(this.drawBaseImageMain)
+      }
     },
 
     writeSimpleText: function (ctx, s, x, y) {
@@ -166,15 +169,17 @@ export default {
     },
 
     drawUserPhoto: function (ctx, src) {
-      var posx = 45
-      var posy = 45
+      return new Promise((loaded) => {
+        var posx = 45
+        var posy = 45
 
-      this.loadImage(src).then(res => {
-        ctx.drawImage(res, posx, posy)
-        this.emitDataURL()
-      }).catch(e => {
-        console.log('onload error', e);
-      });
+        this.loadImage(src).then(res => {
+          ctx.drawImage(res, posx, posy)
+          loaded(ctx)
+        }).catch(e => {
+          console.log('onload error', e)
+        })
+      })
     },
 
     drawCheckBox: function (ctx, checked) {
