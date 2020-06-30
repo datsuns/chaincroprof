@@ -9,6 +9,8 @@
     <div hidden>
       {{ fontSize }}
       {{ textFont }}
+      {{ userPhotoStartX }}
+      {{ userPhotoStartY }}
 
       {{ baseImage }}
       {{ userName }}
@@ -29,6 +31,8 @@ export default {
   props: {
     height: Number,
     width: Number,
+    userPhotoStartX: Number,
+    userPhotoStartY: Number,
     fontSize: Number,
     textFont: String,
     baseImage: String,
@@ -126,7 +130,9 @@ export default {
         this.drawBaseImageMain(ctx)
       }
       else{
-        this.drawUserPhoto(ctx, userProfileImage).then(this.drawBaseImageMain)
+        var x = this.userPhotoStartX
+        var y = this.userPhotoStartY
+        this.drawUserPhoto(ctx, userProfileImage, x, y).then(this.drawBaseImageMain)
       }
     },
 
@@ -169,13 +175,10 @@ export default {
       //ctx.stroke()
     },
 
-    drawUserPhoto: function (ctx, src) {
+    drawUserPhoto: function (ctx, src, x, y) {
       return new Promise((loaded) => {
-        var posx = 45
-        var posy = 45
-
         this.loadImage(src).then(res => {
-          ctx.drawImage(res, posx, posy)
+          ctx.drawImage(res, x, y)
           loaded(ctx)
         }).catch(e => {
           console.log('onload error', e)

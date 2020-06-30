@@ -71,6 +71,8 @@
     <ProfileCanvas
       :height="650"
       :width="1075"
+      :userPhotoStartX="userPhotoStartX"
+      :userPhotoStartY="userPhotoStartY"
       :fontSize="parseInt(fontSize)"
 
       :textFont="textFont"
@@ -110,15 +112,17 @@ export default {
   },
   data () {
     return {
-      fontSize:     50,
-      textFont:     'sans-serif',
-      userName:     '',
-      friendID:     '',
-      twitterName:  '',
-      baseImage:    baseProfileImage1,
-      dataURL:      '',
-      profileImage: null,
-      checkBox1:    false,
+      fontSize:        50,
+      userPhotoStartX: 45,
+      userPhotoStartY: 45,
+      textFont:        'sans-serif',
+      userName:        '',
+      friendID:        '',
+      twitterName:     '',
+      baseImage:       baseProfileImage1,
+      dataURL:         '',
+      profileImage:    null,
+      checkBox1:       false,
       baseImages:[
         {
           name: 'ヘリオス',
