@@ -103,7 +103,6 @@ export default {
     },
 
     drawBaseImageMain: function (ctx) {
-      //ctx.clearRect(0, 0, this.width, this.height)
       this.loadImage(this.baseImage).then(res => {
         ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)
@@ -121,6 +120,8 @@ export default {
       console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
+      ctx.clearRect(0, 0, this.width, this.height)
+
       if (userProfileImage == null ){
         this.drawBaseImageMain(ctx)
       }
@@ -160,12 +161,12 @@ export default {
       ctx.fillStyle = '#ff0000'
       ctx.fillText('@' + name, posx, posy)
       ctx.fillStyle = orgStyle
-      ctx.beginPath()
-      ctx.lineWidth = 8
-      ctx.strokeStyle = '#990000'
-      ctx.arc(posx - 65, posy - 5, 50, 0, Math.PI * 2, true)
-      ctx.closePath()
-      ctx.stroke()
+      //ctx.beginPath()
+      //ctx.lineWidth = 8
+      //ctx.strokeStyle = '#990000'
+      //ctx.arc(posx - 65, posy - 5, 50, 0, Math.PI * 2, true)
+      //ctx.closePath()
+      //ctx.stroke()
     },
 
     drawUserPhoto: function (ctx, src) {
