@@ -116,10 +116,10 @@ export default {
         ctx.drawImage(res, 0, 0)
         this.writeUserName(ctx, this.userName)
         this.writeFriendID(ctx, this.friendID)
-        this.writeTwitterName(ctx, this.twitterName)
+        //this.writeTwitterName(ctx, this.twitterName)
         this.writeCharactorName(ctx, this.charactorName)
         this.writeMessageText(ctx, this.messageText)
-        this.drawCheckBox(ctx, this.checkBox1)
+        //this.drawCheckBox(ctx, this.checkBox1)
         this.emitDataURL()
       }).catch(e => {
         console.log('onload error', e);
@@ -151,14 +151,26 @@ export default {
     },
 
     writeUserName: function (ctx, name) {
-      var posx = 750
+      var fontSize
+      var posx = 730
       var posy = 250
+
+      if( name.length <= 5 ){
+        fontSize = 50
+      }
+      else {
+        fontSize = 30
+      }
+      ctx.font = fontSize + 'px' + ' ' + this.textFont
       this.writeSimpleText(ctx, name, posx, posy)
     },
 
     writeFriendID: function (ctx, name) {
-      var posx = 750
+      var fontSize = 40
+      var posx = 730
       var posy = 340
+
+      ctx.font = fontSize + 'px' + ' ' + this.textFont
       this.writeSimpleText(ctx, name, posx, posy)
     },
 
@@ -183,23 +195,33 @@ export default {
     },
 
     writeCharactorName: function (ctx, name) {
-      var posx = 750
+      var fontSize
+      var posx = 730
       var posy = 430
+
+      if(name.length <= 5){
+        fontSize = 50
+      }
+      else if (name.length <= 8) {
+        fontSize = 40
+      }
+      else{
+        fontSize = 30
+      }
+
+      ctx.font = fontSize + 'px' + ' ' + this.textFont
       this.writeSimpleText(ctx, name, posx, posy)
     },
 
     writeMessageText: function (ctx, text) {
-      var posx = 750
-      var posy = 510
-      this.writeSimpleText(ctx, text.slice(0,5), posx, posy)
+      var fontSize = 30
+      var posx = 530
+      var posy = [530, 565, 600]
 
-      posx = 750
-      posy = 555
-      this.writeSimpleText(ctx, text.slice(0,5), posx, posy)
-
-      posx = 750
-      posy = 600
-      this.writeSimpleText(ctx, text.slice(0,5), posx, posy)
+      ctx.font = fontSize + 'px' + ' ' + this.textFont
+      this.writeSimpleText(ctx, text.slice(0,15), posx, posy[0])
+      this.writeSimpleText(ctx, text.slice(15,30), posx, posy[1])
+      this.writeSimpleText(ctx, text.slice(30,45), posx, posy[2])
     },
 
     drawUserPhoto: function (ctx, src, x, y) {
