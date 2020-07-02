@@ -118,7 +118,7 @@ export default {
   },
   data () {
     return {
-      fontSize:        50,
+      fontSize:        30,
       userPhotoStartX: 45,
       userPhotoStartY: 45,
       textFont:        'MyricaM',
