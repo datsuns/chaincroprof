@@ -1,11 +1,12 @@
 <template>
   <div>
-    <button
+    <md-button
+      class="md-raised md-primary"
       type="button"
       @click="onclick"
       >
       {{ labelText }}
-    </button>
+    </md-button>
     <div hidden>
       {{ dataURL }}
     </div>
@@ -14,6 +15,14 @@
 
 <script>
 /* eslint-disable no-console */
+import Vue from 'vue'
+import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
+
+Vue.use(MdButton)
+Vue.use(MdContent)
+Vue.use(MdTabs)
 
 export default {
   name: 'DownloadButton',
@@ -21,6 +30,7 @@ export default {
     labelText: String,
     dataURL: String,
   },
+
   methods: {
     onclick () {
       let link = document.createElement('a')
