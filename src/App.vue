@@ -67,10 +67,10 @@
     <Upload
       v-on:updated="updateProfileImage($event)"
     />
-    <button v-on:click="userPhotoStartX += 10">x+</button>
-    <button v-on:click="userPhotoStartX -= 10">x-</button>
-    <button v-on:click="userPhotoStartY += 10">y+</button>
-    <button v-on:click="userPhotoStartY -= 10">y-</button>
+    <button v-on:click="userPhotoStartX += 10">→</button>
+    <button v-on:click="userPhotoStartX -= 10">←</button>
+    <button v-on:click="userPhotoStartY += 10">↓</button>
+    <button v-on:click="userPhotoStartY -= 10">↑</button>
     <br>
     <a :href="dataURL" download="image.png">画像ダウンロード</a>
     <ProfileCanvas
