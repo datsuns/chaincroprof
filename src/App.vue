@@ -40,27 +40,14 @@
     </InputArea>
     <InputArea>
       <template v-slot:leftArea>
-        <label for="checkBox1">チェックボックス</label>
+        <label for="charactorName">キャラクタ</label>
       </template>
       <template v-slot:rightArea>
         <UserInput
-          labelText="checkBox1"
-          inputType="checkbox"
-          :value="checkBox1"
-          @change="checkBox1 = $event"
-        />
-      </template>
-    </InputArea>
-    <InputArea>
-      <template v-slot:leftArea>
-        <label for="twitterName">Twitterアカウント</label>
-      </template>
-      <template v-slot:rightArea>
-        <UserInput
-          labelText="twitterName"
+          labelText="charactorName"
           inputType="text"
-          :value="twitterName"
-          @input="twitterName = $event"
+          :value="charactorName"
+          @input="charactorName = $event"
         />
       </template>
     </InputArea>
@@ -85,8 +72,8 @@
       :userName="userName"
       :friendID="friendID"
       :twitterName="twitterName"
+      :charactorName="charactorName"
       :profileImage="profileImage"
-      :checkBox1="checkBox1"
       v-on:updated="updateDataURL($event)"
     />
   </div>
@@ -124,6 +111,7 @@ export default {
       userName:        '',
       friendID:        '',
       twitterName:     '',
+      charactorName:   '',
       baseImage:       baseProfileImage1,
       dataURL:         '',
       profileImage:    null,

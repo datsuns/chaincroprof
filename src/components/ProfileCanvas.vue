@@ -16,6 +16,7 @@
       {{ userName }}
       {{ friendID }}
       {{ twitterName }}
+      {{ charactorName }}
       {{ profileImage }}
       {{ checkBox1 }}
     </div>
@@ -39,6 +40,7 @@ export default {
     userName: String,
     friendID: String,
     twitterName: String,
+    charactorName: String,
     profileImage: String,
     resizedProfileImg: null,
     checkBox1: Boolean
@@ -113,6 +115,7 @@ export default {
         this.writeUserName(ctx, this.userName)
         this.writeFriendID(ctx, this.friendID)
         this.writeTwitterName(ctx, this.twitterName)
+        this.writeCharactorName(ctx, this.charactorName)
         this.drawCheckBox(ctx, this.checkBox1)
         this.emitDataURL()
       }).catch(e => {
@@ -174,6 +177,12 @@ export default {
       //ctx.arc(posx - 65, posy - 5, 50, 0, Math.PI * 2, true)
       //ctx.closePath()
       //ctx.stroke()
+    },
+
+    writeCharactorName: function (ctx, name) {
+      var posx = 750
+      var posy = 430
+      this.writeSimpleText(ctx, name, posx, posy)
     },
 
     drawUserPhoto: function (ctx, src, x, y) {
