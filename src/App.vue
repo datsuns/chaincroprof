@@ -56,9 +56,8 @@
         <label for="messageText">メッセージ</label>
       </template>
       <template v-slot:rightArea>
-        <UserInput
+        <UserInputMulti
           labelText="messageText"
-          inputType="text"
           :value="messageText"
           @input="messageText = $event"
         />
@@ -73,6 +72,7 @@
     <button v-on:click="userPhotoStartY -= 10">↑</button>
     <br>
     <a :href="dataURL" download="image.png">画像ダウンロード</a>
+    <div class="dlbtn" ontouchstart=""><span>画像に変換！</span></div>
     <ProfileCanvas
       :height="650"
       :width="1075"
@@ -94,11 +94,12 @@
 </template>
 
 <script>
-import ProfileCanvas from './components/ProfileCanvas.vue'
-import UserInput     from './components/UserInput.vue'
-import UserSelect    from './components/UserSelect.vue'
-import InputArea     from './components/InputArea.vue'
-import Upload        from './components/Upload'
+import ProfileCanvas  from './components/ProfileCanvas.vue'
+import UserInput      from './components/UserInput.vue'
+import UserInputMulti from './components/UserInputMultiLine.vue'
+import UserSelect     from './components/UserSelect.vue'
+import InputArea      from './components/InputArea.vue'
+import Upload         from './components/Upload'
 
 import baseProfileImage1 from "./assets/_images_common_card_01a.png"
 import baseProfileImage2 from "./assets/_images_common_card_02a.png"
@@ -113,6 +114,7 @@ export default {
     ProfileCanvas,
     InputArea,
     UserInput,
+    UserInputMulti,
     UserSelect,
     Upload,
   },
@@ -185,5 +187,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  .dlbtn{
+      color: #fcf7f8;
+      background-color: #4349e2;
+      width: 500px;
+      text-align: center;
+      padding: 30px;
+      margin: 0 auto;
+      margin-top: 30px;
+  }
 }
+
 </style>
