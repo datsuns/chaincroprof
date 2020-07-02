@@ -104,12 +104,12 @@ import InputArea      from './components/InputArea.vue'
 import Upload         from './components/Upload.vue'
 import DownloadButton from './components/DownloadButton.vue'
 
-import baseProfileImage1 from "./assets/_images_common_card_01a.png"
-import baseProfileImage2 from "./assets/_images_common_card_02a.png"
-import baseProfileImage3 from "./assets/_images_common_card_03a.png"
-import baseProfileImage4 from "./assets/_images_common_card_04a.png"
-import baseProfileImage5 from "./assets/_images_common_card_05a.png"
-import baseProfileImage6 from "./assets/_images_common_card_06a.png"
+import baseProfileImage1 from "./assets/images_common_card_01a.png"
+import baseProfileImage2 from "./assets/images_common_card_02a.png"
+import baseProfileImage3 from "./assets/images_common_card_03a.png"
+import baseProfileImage4 from "./assets/images_common_card_04a.png"
+import baseProfileImage5 from "./assets/images_common_card_05a.png"
+import baseProfileImage6 from "./assets/images_common_card_06a.png"
 
 export default {
   name: 'App',
