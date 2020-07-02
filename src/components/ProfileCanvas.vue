@@ -223,13 +223,13 @@ export default {
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
       if( lines.length >= 1 ){
-        this.writeSimpleText(ctx, lines[0].slice(0.20), posx, posy[0])
+        this.writeSimpleText(ctx, lines[0].slice(0,16), posx, posy[0])
       }
       if( lines.length >= 2 ){
-        this.writeSimpleText(ctx, lines[1].slice(0.20), posx, posy[1])
+        this.writeSimpleText(ctx, lines[1].slice(0,16), posx, posy[1])
       }
       if( lines.length >= 3 ){
-        this.writeSimpleText(ctx, lines[2].slice(0.20), posx, posy[2])
+        this.writeSimpleText(ctx, lines[2].slice(0,16), posx, posy[2])
       }
     },
 
