@@ -217,11 +217,20 @@ export default {
       var fontSize = 30
       var posx = 530
       var posy = [530, 565, 600]
+      var lines = text.split("\n")
+      console.log(lines)
+      console.log(lines.length)
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
-      this.writeSimpleText(ctx, text.slice(0,15), posx, posy[0])
-      this.writeSimpleText(ctx, text.slice(15,30), posx, posy[1])
-      this.writeSimpleText(ctx, text.slice(30,45), posx, posy[2])
+      if( lines.length >= 1 ){
+        this.writeSimpleText(ctx, lines[0].slice(0.20), posx, posy[0])
+      }
+      if( lines.length >= 2 ){
+        this.writeSimpleText(ctx, lines[1].slice(0.20), posx, posy[1])
+      }
+      if( lines.length >= 3 ){
+        this.writeSimpleText(ctx, lines[2].slice(0.20), posx, posy[2])
+      }
     },
 
     drawUserPhoto: function (ctx, src, x, y) {
