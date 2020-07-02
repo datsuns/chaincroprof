@@ -22,5 +22,8 @@ export default {
 </script>
 
 <style scoped>
+input {
+  height: 25px;
+}
 </style>
 

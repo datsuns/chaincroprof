@@ -71,8 +71,7 @@
     <button v-on:click="userPhotoStartY += 10">↓</button>
     <button v-on:click="userPhotoStartY -= 10">↑</button>
     <br>
-    <a :href="dataURL" download="image.png">画像ダウンロード</a>
-    <div class="dlbtn" ontouchstart=""><span>画像に変換！</span></div>
+    <a :class="btn" :href="dataURL" download="image.png">画像ダウンロード</a>
     <ProfileCanvas
       :height="650"
       :width="1075"
@@ -187,16 +186,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
 
-  .dlbtn{
-      color: #fcf7f8;
-      background-color: #4349e2;
-      width: 500px;
-      text-align: center;
-      padding: 30px;
-      margin: 0 auto;
-      margin-top: 30px;
-  }
+
+a{
+    color: #fcf7f8;
+    background-color: #4349e2;
+    width: 500px;
+    text-align: center;
+    padding: 30px;
+    margin: 0 auto;
+    margin-top: 30px;
 }
 
 </style>

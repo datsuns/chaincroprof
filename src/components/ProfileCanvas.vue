@@ -219,8 +219,6 @@ export default {
       var posy = [530, 565, 600]
       var maxLen = 16
       var lines = text.split("\n")
-      console.log(lines)
-      console.log(lines.length)
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
       if( lines.length >= 1 ){

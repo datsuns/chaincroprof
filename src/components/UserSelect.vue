@@ -26,5 +26,9 @@ export default {
 }
 </script>
 
+
 <style scoped>
+select {
+  height: 25px;
+}
 </style>
