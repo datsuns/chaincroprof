@@ -1,8 +1,13 @@
 <template>
   <div id="app">
+    <header>
+      <p>
+      チェンクロぷろふぃーる
+      </p>
+    </header>
     <InputArea>
       <template v-slot:leftArea>
-        <label for="backgroundImage">ベース画像</label>
+        <label for="backgroundImage">背景画像</label>
       </template>
       <template v-slot:rightArea>
         <UserSelect
@@ -212,6 +217,19 @@ a{
     padding: 0px;
     margin: 0 auto;
     margin-top: 50px;
+}
+
+header p{
+    display:             block;
+    font-size:           50px;
+    font-weight:         bold;
+    margin:              0 auto;
+    margin-top:          20px;
+    text-align:          center;
+    margin-block-start:  1em;
+    margin-block-end:    1em;
+    margin-inline-start: 0px;
+    margin-inline-end:   0px;
 }
 
 </style>
