@@ -127,7 +127,7 @@ export default {
       fontSize:        30,
       userPhotoStartX: 45,
       userPhotoStartY: 45,
-      textFont:        'MyricaM',
+      textFont:        'courier new',
       dlButtonLabel:   '画像ダウンロード',
       userName:        '',
       friendID:        '',
