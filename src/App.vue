@@ -120,7 +120,7 @@ export default {
       fontSize:        50,
       userPhotoStartX: 45,
       userPhotoStartY: 45,
-      textFont:        'sans-serif',
+      textFont:        'MyricaM',
       userName:        '',
       friendID:        '',
       twitterName:     '',
