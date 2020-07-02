@@ -71,7 +71,10 @@
     <button v-on:click="userPhotoStartY += 10">↓</button>
     <button v-on:click="userPhotoStartY -= 10">↑</button>
     <br>
-    <a :class="btn" :href="dataURL" download="image.png">画像ダウンロード</a>
+    <DownloadButton
+      :labelText="dlButtonLabel"
+      :dataURL="dataURL"
+    />
     <ProfileCanvas
       :height="650"
       :width="1075"
@@ -98,7 +101,8 @@ import UserInput      from './components/UserInput.vue'
 import UserInputMulti from './components/UserInputMultiLine.vue'
 import UserSelect     from './components/UserSelect.vue'
 import InputArea      from './components/InputArea.vue'
-import Upload         from './components/Upload'
+import Upload         from './components/Upload.vue'
+import DownloadButton from './components/DownloadButton.vue'
 
 import baseProfileImage1 from "./assets/_images_common_card_01a.png"
 import baseProfileImage2 from "./assets/_images_common_card_02a.png"
@@ -116,6 +120,7 @@ export default {
     UserInputMulti,
     UserSelect,
     Upload,
+    DownloadButton,
   },
   data () {
     return {
@@ -123,6 +128,7 @@ export default {
       userPhotoStartX: 45,
       userPhotoStartY: 45,
       textFont:        'MyricaM',
+      dlButtonLabel:   '画像ダウンロード',
       userName:        '',
       friendID:        '',
       twitterName:     '',
@@ -190,13 +196,13 @@ export default {
 
 
 a{
-    color: #fcf7f8;
+    color: #ffffff;
     background-color: #4349e2;
-    width: 500px;
+    width: 200px;
     text-align: center;
-    padding: 30px;
+    padding: 0px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 </style>
