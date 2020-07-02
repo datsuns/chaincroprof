@@ -51,6 +51,19 @@
         />
       </template>
     </InputArea>
+    <InputArea>
+      <template v-slot:leftArea>
+        <label for="messageText">メッセージ</label>
+      </template>
+      <template v-slot:rightArea>
+        <UserInput
+          labelText="messageText"
+          inputType="text"
+          :value="messageText"
+          @input="messageText = $event"
+        />
+      </template>
+    </InputArea>
     <Upload
       v-on:updated="updateProfileImage($event)"
     />
@@ -73,6 +86,7 @@
       :friendID="friendID"
       :twitterName="twitterName"
       :charactorName="charactorName"
+      :messageText="messageText"
       :profileImage="profileImage"
       v-on:updated="updateDataURL($event)"
     />
@@ -112,6 +126,7 @@ export default {
       friendID:        '',
       twitterName:     '',
       charactorName:   '',
+      messageText:     '',
       baseImage:       baseProfileImage1,
       dataURL:         '',
       profileImage:    null,
