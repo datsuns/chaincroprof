@@ -20,5 +20,10 @@ export default {
 </script>
 
 <style scoped>
+textarea {
+  margin-top: 10px;
+  border: 2px line;
+  height: 100px;
+}
 </style>
 
