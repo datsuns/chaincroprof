@@ -124,7 +124,8 @@ export default {
       console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
-      ctx.clearRect(0, 0, this.width, this.height)
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(0, 0, this.width, this.height)
 
       if (userProfileImage == null ){
         this.drawBaseImageMain(ctx)
