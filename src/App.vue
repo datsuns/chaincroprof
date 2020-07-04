@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <header>
-      <p>
-      チェンクロぷろふぃーる
-      </p>
-    </header>
+    <AppTitle
+      :titleText="titleText"
+    />
     <InputArea>
       <template v-slot:leftArea>
         <label for="backgroundImage">背景画像</label>
@@ -117,6 +115,7 @@ import UserSelect     from './components/UserSelect.vue'
 import InputArea      from './components/InputArea.vue'
 import Upload         from './components/Upload.vue'
 import DownloadButton from './components/DownloadButton.vue'
+import AppTitle       from './components/AppTitle.vue'
 
 import baseProfileImage1 from "./assets/images_common_card_01a.png"
 import baseProfileImage2 from "./assets/images_common_card_02a.png"
@@ -135,9 +134,11 @@ export default {
     UserSelect,
     Upload,
     DownloadButton,
+    AppTitle,
   },
   data () {
     return {
+      titleText:       'チェンクロぷろふぃーる',
       fontSize:        30,
       userPhotoStartX: 45,
       userPhotoStartY: 45,
@@ -207,29 +208,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
-
-a{
-    color: #ffffff;
-    background-color: #4349e2;
-    width: 200px;
-    text-align: center;
-    padding: 0px;
-    margin: 0 auto;
-    margin-top: 50px;
-}
-
-header p{
-    display:             block;
-    font-size:           50px;
-    font-weight:         bold;
-    margin:              0 auto;
-    margin-top:          20px;
-    text-align:          center;
-    margin-block-start:  1em;
-    margin-block-end:    1em;
-    margin-inline-start: 0px;
-    margin-inline-end:   0px;
-}
-
 </style>
