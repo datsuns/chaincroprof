@@ -6,7 +6,7 @@
 
     <div class="viewport">
       <md-toolbar :md-elevation="1">
-        <span class="md-title">にゅうりょく</span>
+        <span class="md-title">にゅうりょくしてください</span>
       </md-toolbar>
 
       <md-list class="md-double-line">
