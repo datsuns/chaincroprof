@@ -264,7 +264,7 @@ export default {
 }
 
 .viewport {
-  width: 800px;
+  width: 700px;
   max-width: 100%;
   display: inline-block;
   vertical-align: top;
