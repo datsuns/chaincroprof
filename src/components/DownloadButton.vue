@@ -25,7 +25,7 @@ export default {
 
   methods: {
     onclick () {
-      let link = document.createElement('a')
+      const link = document.createElement('a')
       link.href = this.dataURL
       link.download = 'image.png'
       link.click()
