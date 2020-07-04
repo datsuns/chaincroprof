@@ -7,7 +7,6 @@
     >
     </canvas>
     <div hidden>
-      {{ fontSize }}
       {{ textFont }}
       {{ userPhotoStartX }}
       {{ userPhotoStartY }}
@@ -35,7 +34,6 @@ export default {
     width: Number,
     userPhotoStartX: Number,
     userPhotoStartY: Number,
-    fontSize: Number,
     textFont: String,
     baseImage: String,
     userName: String,
