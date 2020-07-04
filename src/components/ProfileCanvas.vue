@@ -174,17 +174,18 @@ export default {
 
     writeCharactorName: function (ctx, name) {
       var fontSize
-      var posx = 730
-      var posy = 430
+      var posx
+      var posy
 
-      if(name.length <= 5){
+      if(name.length <= 6){
+        posx = 710
+        posy = 430
         fontSize = 50
       }
-      else if (name.length <= 8) {
-        fontSize = 40
-      }
       else{
-        fontSize = 30
+        posx = 530
+        posy = 432
+        fontSize = 25
       }
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
