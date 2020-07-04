@@ -93,10 +93,11 @@
             <div class="md-title">画像位置調整</div>
           </md-card-header>
           <md-card-content>
-            <md-button class="md-raised md-primary" v-on:click="userPhotoStartX += 10">→</md-button>
-            <md-button class="md-raised md-primary" v-on:click="userPhotoStartX -= 10">←</md-button>
-            <md-button class="md-raised md-primary" v-on:click="userPhotoStartY += 10">↓</md-button>
-            <md-button class="md-raised md-primary" v-on:click="userPhotoStartY -= 10">↑</md-button>
+            <md-button class="md-raised md-primary" v-on:click="updateProfilePosX(10)">→</md-button>
+            <md-button class="md-raised md-primary" v-on:click="updateProfilePosX(-10)">←</md-button>
+            <md-button class="md-raised md-primary" v-on:click="updateProfilePosY(10)">↓</md-button>
+            <md-button class="md-raised md-primary" v-on:click="updateProfilePosY(-10)">↑</md-button>
+            <md-button class="md-raised md-primary" v-on:click="resetProfilePos()">reset</md-button>
           </md-card-content>
         </md-card>
 
@@ -238,6 +239,19 @@ export default {
 
     updateTextColor: function() {
       this.textColor = this.colors.hex
+    },
+
+    updateProfilePosX: function(posx) {
+      this.userPhotoStartX += posx
+    },
+
+    updateProfilePosY: function(posy) {
+      this.userPhotoStartY += posy
+    },
+
+    resetProfilePos: function() {
+      this.userPhotoStartX = 45
+      this.userPhotoStartY = 45
     },
   },
 }

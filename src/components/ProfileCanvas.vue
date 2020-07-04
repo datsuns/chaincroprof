@@ -44,7 +44,6 @@ export default {
     charactorName: String,
     messageText: String,
     profileImage: String,
-    resizedProfileImg: null,
   },
 
   mounted () {
@@ -99,8 +98,6 @@ export default {
               // objectのURLを生成
               const url = window.URL.createObjectURL(blob)
 
-              //this.resizedProfileImg = url
-              //ok(this.resizedProfileImg)
               console.log("resize done")
               loaded(url)
             },
