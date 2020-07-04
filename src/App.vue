@@ -108,7 +108,7 @@
           v-on:updated="updateProfileImage($event)"
         />
 
-        <md-card>
+        <md-card class="md-primary">
           <md-card-header>
             <div class="md-title">画像位置調整</div>
           </md-card-header>
@@ -238,7 +238,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
   <link 
     rel="stylesheet"
     href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons"
