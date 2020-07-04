@@ -13,8 +13,8 @@
         <md-list-item>
           <md-field>
             <label for="backgroundImage">背景イメージ</label>
-            <md-select v-model="baseImageTitle" name="baseImageTitle" @md-selected="updateBaseImageTitle()">
-            <md-option value="ヘリオス">ヘリオス</md-option>
+            <md-select v-model="baseImageTitle" name="baseImageTitle" @md-selected="updateBaseImageTitle(baseImageTitle)">
+            <md-option value=ヘリオス>ヘリオス</md-option>
             <md-option value="アリーチェ">アリーチェ</md-option>
             <md-option value="エシャル">エシャル</md-option>
             <md-option value="セレステ">セレステ</md-option>
@@ -185,6 +185,7 @@ export default {
       colors:          {
           hex: '#000000',
       },
+      baseImage1:      baseProfileImage1,
       baseImages:[
         {
           name: 'ヘリオス',
@@ -230,8 +231,8 @@ export default {
       this.baseImage = entry.img
     },
 
-    updateBaseImageTitle: function() {
-      let found = this.baseImages.find(x => x.name === this.baseImageTitle)
+    updateBaseImageTitle: function(title) {
+      let found = this.baseImages.find(x => x.name === title)
       this.baseImage = found.img
     },
 
