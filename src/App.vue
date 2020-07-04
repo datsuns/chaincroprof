@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
+
     <AppTitle :titleText="titleText" />
 
     <div class="viewport">
@@ -8,73 +10,50 @@
       </md-toolbar>
 
       <md-list class="md-double-line">
-        <InputArea>
-          <template v-slot:leftArea>
-            <label for="backgroundImage">背景画像</label>
-          </template>
-          <template v-slot:rightArea>
-            <UserSelect
-              labelText="backgroundImage"
-              :optionList = "baseImages"
-              @select="updateBaseImage($event)"
-            />
-          </template>
-        </InputArea>
+        <md-list-item>
+          <InputArea>
+            <template v-slot:leftArea>
+              <label for="backgroundImage">背景画像</label>
+            </template>
+            <template v-slot:rightArea>
+              <UserSelect
+                labelText="backgroundImage"
+                :optionList = "baseImages"
+                @select="updateBaseImage($event)"
+              />
+            </template>
+          </InputArea>
+        </md-list-item>
 
-        <InputArea>
-          <template v-slot:leftArea>
-            <label for="userName">名前</label>
-          </template>
-          <template v-slot:rightArea>
-            <UserInput
-              labelText="userName"
-              inputType="text"
-              :value="userName"
-              @input="userName = $event"
-            />
-          </template>
-        </InputArea>
+        <md-list-item>
+          <md-field>
+            <label>名前</label>
+            <md-input v-model="userName" placeholder="名前"></md-input>
+          </md-field>
+        </md-list-item>
 
-        <InputArea>
-          <template v-slot:leftArea>
-            <label for="friendID">フレンドID</label>
-          </template>
-          <template v-slot:rightArea>
-            <UserInput
-              labelText="friendID"
-              inputType="text"
-              :value="friendID"
-              @input="friendID = $event"
-            />
-          </template>
-        </InputArea>
+        <md-divider></md-divider>
 
-        <InputArea>
-          <template v-slot:leftArea>
-            <label for="charactorName">キャラクタ</label>
-          </template>
-          <template v-slot:rightArea>
-            <UserInput
-              labelText="charactorName"
-              inputType="text"
-              :value="charactorName"
-              @input="charactorName = $event"
-            />
-          </template>
-        </InputArea>
+        <md-list-item>
+          <md-field>
+            <label>フレンドID</label>
+            <md-input v-model="friendID" placeholder="フレンドID"></md-input>
+          </md-field>
+        </md-list-item>
 
-        <InputArea>
-          <template v-slot:leftArea>
-            <label for="messageText">メッセージ</label>
-          </template>
-          <template v-slot:rightArea>
-            <UserInputMulti
-              labelText="messageText"
-              :value="messageText"
-              @input="messageText = $event"
-            />
-          </template>
-        </InputArea>
+        <md-list-item>
+          <md-field>
+            <label>キャラクタ名</label>
+            <md-input v-model="charactorName" placeholder="キャラクタ名"></md-input>
+          </md-field>
+        </md-list-item>
+
+        <md-list-item>
+          <md-field>
+            <label>メッセージ</label>
+            <md-textarea v-model="messageText" placeholder="メッセージ(３行まで)"></md-textarea>
+          </md-field>
+        </md-list-item>
       </md-list>
     </div>
 
@@ -151,8 +130,8 @@ import VueMaterial from 'vue-material'
 Vue.use(VueMaterial)
 
 import ProfileCanvas  from './components/ProfileCanvas.vue'
-import UserInput      from './components/UserInput.vue'
-import UserInputMulti from './components/UserInputMultiLine.vue'
+//import UserInput      from './components/UserInput.vue'
+//import UserInputMulti from './components/UserInputMultiLine.vue'
 import UserSelect     from './components/UserSelect.vue'
 import InputArea      from './components/InputArea.vue'
 import Upload         from './components/Upload.vue'
@@ -171,8 +150,8 @@ export default {
   components: {
     ProfileCanvas,
     InputArea,
-    UserInput,
-    UserInputMulti,
+    //UserInput,
+    //UserInputMulti,
     UserSelect,
     Upload,
     DownloadButton,
@@ -264,6 +243,10 @@ export default {
 .md-button, clean{
   color: #ffffff;
   background: #0000ff;
+}
+
+.md-field, md-theme-default{
+  background: #dddddd;
 }
 
 .viewport {
