@@ -116,7 +116,7 @@ export default {
     },
 
     clearImageArea: function (ctx) {
-      var orgStyle = ctx.fillStyle
+      const orgStyle = ctx.fillStyle
       ctx.fillStyle = '#ffffff'
       ctx.fillRect(0, 0, this.width, this.height)
       ctx.fillStyle = orgStyle
@@ -132,63 +132,57 @@ export default {
         this.drawBaseImageMain(ctx)
       }
       else{
-        var x = this.userPhotoStartX
-        var y = this.userPhotoStartY
+        const x = this.userPhotoStartX
+        const y = this.userPhotoStartY
         this.drawUserPhoto(ctx, userProfileImage, x, y).then(this.drawBaseImageMain)
       }
     },
 
     writeSimpleText: function (ctx, s, x, y) {
-      var orgStyle = ctx.fillStyle
+      const orgStyle = ctx.fillStyle
       ctx.fillStyle = this.textColor
       ctx.fillText(s, x, y)
       ctx.fillStyle = orgStyle
     },
 
     writeUserName: function (ctx, name) {
-      var fontSize = 50
-      var posx = 730
-      var posy = 250
+      const fontSize = 50
+      const posx = 730
+      const posy = 250
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
       this.writeSimpleText(ctx, name.slice(0, 6), posx, posy)
     },
 
     writeFriendID: function (ctx, name) {
-      var fontSize = 40
-      var posx = 730
-      var posy = 340
+      const fontSize = 40
+      const posx = 730
+      const posy = 340
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
       this.writeSimpleText(ctx, name, posx, posy)
     },
 
     writeCharactorName: function (ctx, name) {
-      var fontSize
-      var posx
-      var posy
+      const p = function(len) {
+        if(len <= 6){
+          return {x:710, y:430, fontSize:50}
+        }
+        else{
+          return {x:530, y:432, fontSize:25}
+        }
+      }(name.length)
 
-      if(name.length <= 6){
-        posx = 710
-        posy = 430
-        fontSize = 50
-      }
-      else{
-        posx = 530
-        posy = 432
-        fontSize = 25
-      }
-
-      ctx.font = fontSize + 'px' + ' ' + this.textFont
-      this.writeSimpleText(ctx, name, posx, posy)
+      ctx.font = p.fontSize + 'px' + ' ' + this.textFont
+      this.writeSimpleText(ctx, name, p.x, p.y)
     },
 
     writeMessageText: function (ctx, text) {
-      var fontSize = 30
-      var posx = 530
-      var posy = [530, 565, 600]
-      var maxLen = 16
-      var lines = text.split("\n")
+      const fontSize = 30
+      const posx = 530
+      const posy = [530, 565, 600]
+      const maxLen = 16
+      const lines = text.split("\n")
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
       if( lines.length >= 1 ){
@@ -211,18 +205,6 @@ export default {
           console.log('onload error', e)
         })
       })
-    },
-
-    drawCheckBox: function (ctx, checked) {
-      var posx = 250
-      var posy = 815
-      var orgStyle = ctx.fillStyle
-
-      ctx.fillStyle = '#ff0000'
-      if( checked ){
-        ctx.fillText("✔", posx, posy)
-      }
-      ctx.fillStyle = orgStyle
     },
 
     base64ToBlob(base64, fileType) {
