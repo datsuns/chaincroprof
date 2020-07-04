@@ -1,16 +1,11 @@
 <template>
-  <md-card>
-    <md-card-header>
-      <div class="md-title">プロフィール画像をUpload</div>
-    </md-card-header>
-
-    <md-card-content>
-      <md-field>
-        <label>画像を選択</label>
-        <md-file v-model="uploadedImage" @md-change="onFileChange(uploadedImage)"/>
-      </md-field>
-    </md-card-content>
-  </md-card>
+  <div>
+    <div class="md-title">プロフィール画像をUpload</div>
+    <md-field>
+      <label>画像を選択</label>
+      <md-file v-model="uploadedImage" @md-change="onFileChange(uploadedImage)"/>
+    </md-field>
+  </div>
 </template>
 
 <script>
