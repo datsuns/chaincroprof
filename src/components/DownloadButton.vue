@@ -36,6 +36,9 @@ export default {
 
 <style scoped>
 .md-button, clean{
+  max-width:   400px;
+  height:      50px;
+  font-size:   30px;
   color: #ffffff;
   background: #448aff;
 }
