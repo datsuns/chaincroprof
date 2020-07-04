@@ -65,41 +65,41 @@
       </md-toolbar>
 
       <md-list class="md-double-line">
-        <ProfileCanvas
-          :height="650"
-          :width="1075"
-          :userPhotoStartX="userPhotoStartX"
-          :userPhotoStartY="userPhotoStartY"
-          :fontSize="parseInt(fontSize)"
+        <md-list-item>
+          <ProfileCanvas
+            :height="650"
+            :width="1075"
+            :userPhotoStartX="userPhotoStartX"
+            :userPhotoStartY="userPhotoStartY"
+            :fontSize="parseInt(fontSize)"
 
-          :textFont="textFont"
-          :textColor='textColor'
-          :baseImage="baseImage"
-          :userName="userName"
-          :friendID="friendID"
-          :twitterName="twitterName"
-          :charactorName="charactorName"
-          :messageText="messageText"
-          :profileImage="profileImage"
-          v-on:updated="updateDataURL($event)"
-        />
+            :textFont="textFont"
+            :textColor='textColor'
+            :baseImage="baseImage"
+            :userName="userName"
+            :friendID="friendID"
+            :twitterName="twitterName"
+            :charactorName="charactorName"
+            :messageText="messageText"
+            :profileImage="profileImage"
+            v-on:updated="updateDataURL($event)"
+          />
+        </md-list-item>
 
         <Upload
           v-on:updated="updateProfileImage($event)"
         />
 
-        <md-card>
-          <md-card-header>
-            <div class="md-title">画像位置調整</div>
-          </md-card-header>
-          <md-card-content>
-            <md-button class="md-raised md-primary" v-on:click="updateProfilePosX(10)">→</md-button>
-            <md-button class="md-raised md-primary" v-on:click="updateProfilePosX(-10)">←</md-button>
-            <md-button class="md-raised md-primary" v-on:click="updateProfilePosY(10)">↓</md-button>
-            <md-button class="md-raised md-primary" v-on:click="updateProfilePosY(-10)">↑</md-button>
-            <md-button class="md-raised md-primary" v-on:click="resetProfilePos()">reset</md-button>
-          </md-card-content>
-        </md-card>
+        <md-card-header>
+          <div class="md-title">画像位置調整</div>
+        </md-card-header>
+        <md-card-content>
+          <md-button class="md-raised md-primary" v-on:click="updateProfilePosX(10)">→</md-button>
+          <md-button class="md-raised md-primary" v-on:click="updateProfilePosX(-10)">←</md-button>
+          <md-button class="md-raised md-primary" v-on:click="updateProfilePosY(10)">↓</md-button>
+          <md-button class="md-raised md-primary" v-on:click="updateProfilePosY(-10)">↑</md-button>
+          <md-button class="md-raised md-primary" v-on:click="resetProfilePos()">reset</md-button>
+        </md-card-content>
 
         <DownloadButton
           :labelText="dlButtonLabel"
