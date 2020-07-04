@@ -26,6 +26,7 @@
 /* eslint-disable no-console */
 import blueimpLoadImage from 'blueimp-load-image';
 
+
 export default {
   name: 'ProfileCanvas',
   props: {
@@ -52,7 +53,7 @@ export default {
   },
 
   updated () {
-    console.log("updated")
+    console.log("updated" + this.baseImage )
     this.draw()
     this.emitDataURL()
   },
@@ -107,6 +108,8 @@ export default {
     },
 
     drawBaseImageMain: function (ctx) {
+      console.log("draw")
+      console.log(this.baseImage)
       this.loadImage(this.baseImage).then(res => {
         ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)

@@ -11,18 +11,17 @@
 
       <md-list class="md-double-line">
         <md-list-item>
-          <InputArea>
-            <template v-slot:leftArea>
-              <label for="backgroundImage">背景画像</label>
-            </template>
-            <template v-slot:rightArea>
-              <UserSelect
-                labelText="backgroundImage"
-                :optionList = "baseImages"
-                @select="updateBaseImage($event)"
-              />
-            </template>
-          </InputArea>
+          <md-field>
+            <label for="backgroundImage">背景イメージ</label>
+            <md-select v-model="baseImageTitle" name="baseImageTitle" @md-selected="updateBaseImageTitle()">
+            <md-option value="ヘリオス">ヘリオス</md-option>
+            <md-option value="アリーチェ">アリーチェ</md-option>
+            <md-option value="エシャル">エシャル</md-option>
+            <md-option value="セレステ">セレステ</md-option>
+            <md-option value="アマツ">アマツ</md-option>
+            <md-option value="つかむ">つかむ</md-option>
+            </md-select>
+          </md-field>
         </md-list-item>
 
         <md-list-item>
@@ -83,15 +82,15 @@
           v-on:updated="updateProfileImage($event)"
         />
 
-        <md-card class="md-primary">
+        <md-card>
           <md-card-header>
             <div class="md-title">画像位置調整</div>
           </md-card-header>
           <md-card-content>
-            <md-button class="md-raised" v-on:click="userPhotoStartX += 10">→</md-button>
-            <md-button class="md-raised" v-on:click="userPhotoStartX -= 10">←</md-button>
-            <md-button class="md-raised" v-on:click="userPhotoStartY += 10">↓</md-button>
-            <md-button class="md-raised" v-on:click="userPhotoStartY -= 10">↑</md-button>
+            <md-button class="md-raised md-primary" v-on:click="userPhotoStartX += 10">→</md-button>
+            <md-button class="md-raised md-primary" v-on:click="userPhotoStartX -= 10">←</md-button>
+            <md-button class="md-raised md-primary" v-on:click="userPhotoStartY += 10">↓</md-button>
+            <md-button class="md-raised md-primary" v-on:click="userPhotoStartY -= 10">↑</md-button>
           </md-card-content>
         </md-card>
 
@@ -112,9 +111,9 @@
 <script>
 import Vue from 'vue'
 import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
 
 //import { MdButton, MdContent, MdTabs, MdIcon, MdDivider, MdToolbar, MdList } from 'vue-material/dist/components'
-//import 'vue-material/dist/theme/default.css'
 //
 //Vue.use(MdButton)
 //Vue.use(MdContent)
@@ -130,8 +129,8 @@ Vue.use(VueMaterial)
 import ProfileCanvas  from './components/ProfileCanvas.vue'
 //import UserInput      from './components/UserInput.vue'
 //import UserInputMulti from './components/UserInputMultiLine.vue'
-import UserSelect     from './components/UserSelect.vue'
-import InputArea      from './components/InputArea.vue'
+//import UserSelect     from './components/UserSelect.vue'
+//import InputArea      from './components/InputArea.vue'
 import Upload         from './components/Upload.vue'
 import DownloadButton from './components/DownloadButton.vue'
 import AppTitle       from './components/AppTitle.vue'
@@ -147,10 +146,10 @@ export default {
   name: 'App',
   components: {
     ProfileCanvas,
-    InputArea,
+    //InputArea,
     //UserInput,
     //UserInputMulti,
-    UserSelect,
+    //UserSelect,
     Upload,
     DownloadButton,
     AppTitle,
@@ -169,6 +168,7 @@ export default {
       charactorName:   '',
       messageText:     '',
       baseImage:       baseProfileImage1,
+      baseImageTitle:  'ヘリオス',
       dataURL:         '',
       profileImage:    null,
       checkBox1:       false,
@@ -214,6 +214,12 @@ export default {
       console.log("updateBaseImage")
       this.baseImage = entry.img
     },
+
+    updateBaseImageTitle: function() {
+      let found = this.baseImages.find(x => x.name === this.baseImageTitle)
+      console.log(found)
+      this.baseImage = found.img
+    },
   },
 }
 </script>
@@ -236,11 +242,6 @@ export default {
 
 .md-body-1, body {
   font-size:   20px;
-}
-
-.md-button, clean{
-  color: #ffffff;
-  background: #0000ff;
 }
 
 .md-field, md-theme-default{
