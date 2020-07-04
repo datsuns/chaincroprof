@@ -139,7 +139,7 @@ export default {
 
     writeSimpleText: function (ctx, s, x, y) {
       var orgStyle = ctx.fillStyle
-      ctx.fillStyle = '#ff0000'
+      ctx.fillStyle = '#000000'
       ctx.fillText(s, x, y)
       ctx.fillStyle = orgStyle
     },
