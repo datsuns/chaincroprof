@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
-
     <AppTitle :titleText="titleText" />
 
     <div class="viewport">
@@ -14,12 +12,12 @@
           <md-field>
             <label for="backgroundImage">背景イメージ選択</label>
             <md-select v-model="baseImageTitle" name="baseImageTitle" id="baseImageTitle" @md-selected="updateBaseImageTitle(baseImageTitle)">
-            <md-option value=ヘリオス>ヘリオス</md-option>
-            <md-option value="アリーチェ">アリーチェ</md-option>
-            <md-option value="エシャル">エシャル</md-option>
-            <md-option value="セレステ">セレステ</md-option>
-            <md-option value="アマツ">アマツ</md-option>
-            <md-option value="つかむ">つかむ</md-option>
+              <md-option value=ヘリオス>ヘリオス</md-option>
+              <md-option value="アリーチェ">アリーチェ</md-option>
+              <md-option value="エシャル">エシャル</md-option>
+              <md-option value="セレステ">セレステ</md-option>
+              <md-option value="アマツ">アマツ</md-option>
+              <md-option value="つかむ">つかむ</md-option>
             </md-select>
           </md-field>
         </md-list-item>
@@ -59,11 +57,11 @@
 
         <md-list-item>
           <md-field>
-            <label for="textFont">フォント変更</label>
+            <label >フォント変更</label>
             <md-select v-model="textFont" name="textFont" id="textFont" @md-selected="updateTextFont(textFont)" >
-            <md-option value="Tetsubin">男前</md-option>
-            <md-option value="Avenir">元に戻す</md-option>
-            <md-option value="FgZero">戦闘機</md-option>
+              <md-option value="Tetsubin">男前</md-option>
+              <md-option value="Avenir">元に戻す</md-option>
+              <md-option value="FgZero">戦闘機</md-option>
             </md-select>
           </md-field>
         </md-list-item>
@@ -85,6 +83,7 @@
             :fontSize="parseInt(fontSize)"
 
             :textFont="textFont"
+            :customFontList="customFontList"
             :textColor='textColor'
             :baseImage="baseImage"
             :userName="userName"
@@ -192,6 +191,10 @@ export default {
       colors:          {
           hex: '#000000',
       },
+      customFontList:[
+        'Tetsubin',
+        'FgZero',
+      ],
       baseImages:[
         {
           name: 'ヘリオス',
@@ -220,6 +223,7 @@ export default {
       ],
     }
   },
+
   methods: {
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
@@ -271,7 +275,7 @@ export default {
   >
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif, Tetsubin, FgZero;
   font-size:   50px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -289,3 +293,4 @@ export default {
   border: 1px solid rgba(#000, .12);
 }
 </style>
+

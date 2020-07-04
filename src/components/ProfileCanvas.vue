@@ -36,6 +36,7 @@ export default {
     userPhotoStartX: Number,
     userPhotoStartY: Number,
     textFont: String,
+    customFontList: Array,
     textColor: String,
     baseImage: String,
     userName: String,
@@ -47,6 +48,7 @@ export default {
   },
 
   mounted () {
+    this.forceFontLoad()
     this.draw()
     this.emitDataURL()
   },
@@ -57,6 +59,19 @@ export default {
   },
 
   methods: {
+    // changing font effects after 2nd time.
+    // i dont know the other way to load force...
+    forceFontLoad: function () {
+      const cv = document.getElementById('cv')
+      const ctx = cv.getContext('2d')
+      const prev = ctx.font
+      for (const f in this.customFontList ) {
+        ctx.font = '0px' + ' ' + this.customFontList[f]
+        this.writeSimpleText(ctx, "a", 0, 0)
+      }
+      ctx.font = prev
+    },
+
     draw: function () {
       if( this.profileImage != null ){
         this.resizeImage(this.profileImage, 500, 800).then(this.drawBaseImage)
