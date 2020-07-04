@@ -13,7 +13,7 @@
         <md-list-item>
           <md-field>
             <label for="backgroundImage">背景イメージ選択</label>
-            <md-select v-model="baseImageTitle" name="baseImageTitle" @md-selected="updateBaseImageTitle(baseImageTitle)">
+            <md-select v-model="baseImageTitle" name="baseImageTitle" id="baseImageTitle" @md-selected="updateBaseImageTitle(baseImageTitle)">
             <md-option value=ヘリオス>ヘリオス</md-option>
             <md-option value="アリーチェ">アリーチェ</md-option>
             <md-option value="エシャル">エシャル</md-option>
@@ -59,8 +59,8 @@
 
         <md-list-item>
           <md-field>
-            <label for="drawFont">フォント変更</label>
-            <md-select v-model="textFont" name="textFont" >
+            <label for="textFont">フォント変更</label>
+            <md-select v-model="textFont" name="textFont" id="textFont" @md-selected="updateTextFont(textFont)" >
             <md-option value="Tetsubin">男前</md-option>
             <md-option value="Avenir">元に戻す</md-option>
             <md-option value="FgZero">戦闘機</md-option>
@@ -255,6 +255,10 @@ export default {
     resetProfilePos: function() {
       this.userPhotoStartX = 45
       this.userPhotoStartY = 45
+    },
+
+    updateTextFont: function(fontName) {
+      this.textFont = fontName
     },
   },
 }
