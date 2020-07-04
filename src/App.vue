@@ -32,8 +32,6 @@
           </md-field>
         </md-list-item>
 
-        <md-divider></md-divider>
-
         <md-list-item>
           <md-field>
             <label>フレンドID</label>
