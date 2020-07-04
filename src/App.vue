@@ -138,10 +138,6 @@ import VueMaterial from 'vue-material'
 Vue.use(VueMaterial)
 
 import ProfileCanvas  from './components/ProfileCanvas.vue'
-//import UserInput      from './components/UserInput.vue'
-//import UserInputMulti from './components/UserInputMultiLine.vue'
-//import UserSelect     from './components/UserSelect.vue'
-//import InputArea      from './components/InputArea.vue'
 import Upload         from './components/Upload.vue'
 import DownloadButton from './components/DownloadButton.vue'
 import AppTitle       from './components/AppTitle.vue'
@@ -153,17 +149,12 @@ import baseProfileImage4 from "./assets/images_common_card_04a.png"
 import baseProfileImage5 from "./assets/images_common_card_05a.png"
 import baseProfileImage6 from "./assets/images_common_card_06a.png"
 
-//import ColorPickerCompact from 'compact-picker'
 import {Compact} from 'vue-color'
 
 export default {
   name: 'App',
   components: {
     ProfileCanvas,
-    //InputArea,
-    //UserInput,
-    //UserInputMulti,
-    //UserSelect,
     Upload,
     DownloadButton,
     AppTitle,
