@@ -3,72 +3,116 @@
     <AppTitle
       :titleText="titleText"
     />
-    <InputArea>
-      <template v-slot:leftArea>
-        <label for="backgroundImage">背景画像</label>
-      </template>
-      <template v-slot:rightArea>
-        <UserSelect
-          labelText="backgroundImage"
-          :optionList = "baseImages"
-          @select="updateBaseImage($event)"
+    <div class="viewport">
+      <md-toolbar :md-elevation="1">
+        <span class="md-title">にゅうりょく</span>
+      </md-toolbar>
+
+      <md-list class="md-double-line">
+        <md-divider></md-divider>
+
+        <InputArea>
+          <template v-slot:leftArea>
+            <label for="backgroundImage">背景画像</label>
+          </template>
+          <template v-slot:rightArea>
+            <UserSelect
+              labelText="backgroundImage"
+              :optionList = "baseImages"
+              @select="updateBaseImage($event)"
+            />
+          </template>
+        </InputArea>
+
+        <InputArea>
+          <template v-slot:leftArea>
+            <label for="userName">名前</label>
+          </template>
+          <template v-slot:rightArea>
+            <UserInput
+              labelText="userName"
+              inputType="text"
+              :value="userName"
+              @input="userName = $event"
+            />
+          </template>
+        </InputArea>
+
+        <InputArea>
+          <template v-slot:leftArea>
+            <label for="friendID">フレンドID</label>
+          </template>
+          <template v-slot:rightArea>
+            <UserInput
+              labelText="friendID"
+              inputType="text"
+              :value="friendID"
+              @input="friendID = $event"
+            />
+          </template>
+        </InputArea>
+
+        <InputArea>
+          <template v-slot:leftArea>
+            <label for="charactorName">キャラクタ</label>
+          </template>
+          <template v-slot:rightArea>
+            <UserInput
+              labelText="charactorName"
+              inputType="text"
+              :value="charactorName"
+              @input="charactorName = $event"
+            />
+          </template>
+        </InputArea>
+
+        <InputArea>
+          <template v-slot:leftArea>
+            <label for="messageText">メッセージ</label>
+          </template>
+          <template v-slot:rightArea>
+            <UserInputMulti
+              labelText="messageText"
+              :value="messageText"
+              @input="messageText = $event"
+            />
+          </template>
+        </InputArea>
+      </md-list>
+    </div>
+
+    <div class="viewport">
+      <md-toolbar :md-elevation="1">
+        <span class="md-title">プレビュー</span>
+      </md-toolbar>
+
+      <md-divider></md-divider>
+
+      <md-list class="md-double-line">
+        <ProfileCanvas
+          :height="650"
+          :width="1075"
+          :userPhotoStartX="userPhotoStartX"
+          :userPhotoStartY="userPhotoStartY"
+          :fontSize="parseInt(fontSize)"
+
+          :textFont="textFont"
+          :baseImage="baseImage"
+          :userName="userName"
+          :friendID="friendID"
+          :twitterName="twitterName"
+          :charactorName="charactorName"
+          :messageText="messageText"
+          :profileImage="profileImage"
+          v-on:updated="updateDataURL($event)"
         />
-      </template>
-    </InputArea>
-    <InputArea>
-      <template v-slot:leftArea>
-        <label for="userName">名前</label>
-      </template>
-      <template v-slot:rightArea>
-        <UserInput
-          labelText="userName"
-          inputType="text"
-          :value="userName"
-          @input="userName = $event"
-        />
-      </template>
-    </InputArea>
-    <InputArea>
-      <template v-slot:leftArea>
-        <label for="friendID">フレンドID</label>
-      </template>
-      <template v-slot:rightArea>
-        <UserInput
-          labelText="friendID"
-          inputType="text"
-          :value="friendID"
-          @input="friendID = $event"
-        />
-      </template>
-    </InputArea>
-    <InputArea>
-      <template v-slot:leftArea>
-        <label for="charactorName">キャラクタ</label>
-      </template>
-      <template v-slot:rightArea>
-        <UserInput
-          labelText="charactorName"
-          inputType="text"
-          :value="charactorName"
-          @input="charactorName = $event"
-        />
-      </template>
-    </InputArea>
-    <InputArea>
-      <template v-slot:leftArea>
-        <label for="messageText">メッセージ</label>
-      </template>
-      <template v-slot:rightArea>
-        <UserInputMulti
-          labelText="messageText"
-          :value="messageText"
-          @input="messageText = $event"
-        />
-      </template>
-    </InputArea>
+      </md-list>
+    </div>
+
     <Upload
       v-on:updated="updateProfileImage($event)"
     />
+    画像位置調整
     <button v-on:click="userPhotoStartX += 10">→</button>
     <button v-on:click="userPhotoStartX -= 10">←</button>
     <button v-on:click="userPhotoStartY += 10">↓</button>
@@ -77,23 +121,6 @@
     <DownloadButton
       :labelText="dlButtonLabel"
       :dataURL="dataURL"
-    />
-    <ProfileCanvas
-      :height="650"
-      :width="1075"
-      :userPhotoStartX="userPhotoStartX"
-      :userPhotoStartY="userPhotoStartY"
-      :fontSize="parseInt(fontSize)"
-
-      :textFont="textFont"
-      :baseImage="baseImage"
-      :userName="userName"
-      :friendID="friendID"
-      :twitterName="twitterName"
-      :charactorName="charactorName"
-      :messageText="messageText"
-      :profileImage="profileImage"
-      v-on:updated="updateDataURL($event)"
     />
   </div>
 </template>
@@ -207,5 +234,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.viewport {
+  width: 320px;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  overflow: auto;
+  border: 1px solid rgba(#000, .12);
 }
 </style>
