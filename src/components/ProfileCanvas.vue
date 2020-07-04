@@ -247,6 +247,5 @@ export default {
 <style scoped>
 canvas {
   margin-top: 10px;
-  border: 1px dotted;
 }
 </style>
