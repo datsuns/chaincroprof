@@ -171,7 +171,6 @@ export default {
       baseImageTitle:  'ヘリオス',
       dataURL:         '',
       profileImage:    null,
-      checkBox1:       false,
       baseImages:[
         {
           name: 'ヘリオス',
