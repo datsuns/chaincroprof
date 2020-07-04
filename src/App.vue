@@ -51,6 +51,11 @@
             <md-textarea v-model="messageText" placeholder="メッセージ(３行まで)"></md-textarea>
           </md-field>
         </md-list-item>
+
+        <md-list-item>
+          <label>文字色変更</label>
+          <compact-picker v-model="colors" @input="updateTextColor"></compact-picker>
+        </md-list-item>
       </md-list>
     </div>
 
@@ -68,6 +73,7 @@
           :fontSize="parseInt(fontSize)"
 
           :textFont="textFont"
+          :textColor='textColor'
           :baseImage="baseImage"
           :userName="userName"
           :friendID="friendID"
@@ -142,6 +148,9 @@ import baseProfileImage4 from "./assets/images_common_card_04a.png"
 import baseProfileImage5 from "./assets/images_common_card_05a.png"
 import baseProfileImage6 from "./assets/images_common_card_06a.png"
 
+//import ColorPickerCompact from 'compact-picker'
+import {Compact} from 'vue-color'
+
 export default {
   name: 'App',
   components: {
@@ -153,6 +162,7 @@ export default {
     Upload,
     DownloadButton,
     AppTitle,
+    'compact-picker': Compact
   },
   data () {
     return {
@@ -171,6 +181,10 @@ export default {
       baseImageTitle:  'ヘリオス',
       dataURL:         '',
       profileImage:    null,
+      textColor:       '#000000',
+      colors:          {
+          hex: '#000000',
+      },
       baseImages:[
         {
           name: 'ヘリオス',
@@ -219,6 +233,10 @@ export default {
     updateBaseImageTitle: function() {
       let found = this.baseImages.find(x => x.name === this.baseImageTitle)
       this.baseImage = found.img
+    },
+
+    updateTextColor: function() {
+      this.textColor = this.colors.hex
     },
   },
 }

@@ -8,6 +8,7 @@
     </canvas>
     <div hidden>
       {{ textFont }}
+      {{ textColor }}
       {{ userPhotoStartX }}
       {{ userPhotoStartY }}
 
@@ -35,6 +36,7 @@ export default {
     userPhotoStartX: Number,
     userPhotoStartY: Number,
     textFont: String,
+    textColor: String,
     baseImage: String,
     userName: String,
     friendID: String,
@@ -53,7 +55,8 @@ export default {
   },
 
   updated () {
-    console.log("updated" + this.baseImage )
+    console.log("updated")
+    console.log(this.textColor)
     this.draw()
     this.emitDataURL()
   },
@@ -123,12 +126,19 @@ export default {
       })
     },
 
+    clearImageArea: function (ctx) {
+      var orgStyle = ctx.fillStyle
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(0, 0, this.width, this.height)
+      ctx.fillStyle = orgStyle
+    },
+
     drawBaseImage: function (userProfileImage) {
       console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
-      ctx.fillStyle = '#ffffff'
-      ctx.fillRect(0, 0, this.width, this.height)
+
+      this.clearImageArea(ctx)
 
       if (userProfileImage == null ){
         this.drawBaseImageMain(ctx)
@@ -142,7 +152,7 @@ export default {
 
     writeSimpleText: function (ctx, s, x, y) {
       var orgStyle = ctx.fillStyle
-      ctx.fillStyle = '#000000'
+      ctx.fillStyle = this.textColor
       ctx.fillText(s, x, y)
       ctx.fillStyle = orgStyle
     },
