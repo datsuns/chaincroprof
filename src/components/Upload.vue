@@ -5,25 +5,10 @@
     </md-card-header>
 
     <md-card-content>
-      <div class="contents">
-        <label v-show="!uploadedImage" class="input-item__label">
-          <input type="file" @change="onFileChange" />
-        </label>
-        <div class="preview-item">
-          <img
-            v-show="uploadedImage"
-            class="preview-item-file"
-            :src="uploadedImage"
-            alt=""
-          />
-          <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-            <p class="preview-item-name">"image"</p>
-            <!--
-            <e-icon class="preview-item-icon">close</e-icon>
-            -->
-          </div>
-        </div>
-      </div>
+      <md-field>
+        <label>画像を選択</label>
+        <md-file v-model="uploadedImage" @md-change="onFileChange(uploadedImage)"/>
+      </md-field>
     </md-card-content>
   </md-card>
 </template>
@@ -33,16 +18,19 @@
 export default {
   components: {
   },
+
   data() {
     return {
       uploadedImage: ''
     };
   },
+
   methods: {
     onFileChange(e) {
       const files = e.target.files || e.dataTransfer.files;
       this.createImage(files[0]);
     },
+
     // アップロードした画像を表示
     createImage(file) {
       console.log(file)
@@ -54,6 +42,7 @@ export default {
       };
       reader.readAsDataURL(file);
     },
+
     remove() {
       this.uploadedImage = false;
     },

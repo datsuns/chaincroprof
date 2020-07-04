@@ -204,10 +204,12 @@ export default {
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
     },
+
     updateProfileImage: function (dataURL) {
       console.log("updateProfileImage:" + dataURL)
       this.profileImage = dataURL
     },
+
     updateBaseImage: function (name) {
       let entry = this.baseImages.find(x => x.name === name)
       //this.$set(this, "baseImage", baseProfileImage6)
@@ -217,7 +219,6 @@ export default {
 
     updateBaseImageTitle: function() {
       let found = this.baseImages.find(x => x.name === this.baseImageTitle)
-      console.log(found)
       this.baseImage = found.img
     },
   },
@@ -240,16 +241,8 @@ export default {
   margin-top: 5px;
 }
 
-.md-body-1, body {
-  font-size:   20px;
-}
-
-.md-field, md-theme-default{
-  background: #dddddd;
-}
-
 .viewport {
-  width: 700px;
+  width: 600px;
   max-width: 100%;
   display: inline-block;
   vertical-align: top;
