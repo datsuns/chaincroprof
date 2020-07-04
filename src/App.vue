@@ -108,6 +108,10 @@
       </md-list>
     </div>
     <div>
+      ベースの画像は公式サイトのものを利用しています →  
+      <a href="http://chronicle.sega-net.com/7th_chain/" target="_blank">チェインクロニクル3 7周年特設サイト</a>
+    </div>
+    <div>
       <a href="https://github.com/chainchroprof/prof7th" target="_blank">source code(github)</a>
       <br>
       <a href="https://twitter.com/datsuns" target="_blank">by @datsuns</a>
