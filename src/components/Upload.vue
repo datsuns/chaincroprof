@@ -1,24 +1,31 @@
 <template>
-  <div class="contents">
-    <label v-show="!uploadedImage" class="input-item__label"
-      >プロフィール画像をUpload
-      <input type="file" @change="onFileChange" />
-    </label>
-    <div class="preview-item">
-      <img
-        v-show="uploadedImage"
-        class="preview-item-file"
-        :src="uploadedImage"
-        alt=""
-      />
-      <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-        <p class="preview-item-name">"image"</p>
-        <!--
-        <e-icon class="preview-item-icon">close</e-icon>
-        -->
+  <md-card>
+    <md-card-header>
+      <div class="md-title">プロフィール画像をUpload</div>
+    </md-card-header>
+
+    <md-card-content>
+      <div class="contents">
+        <label v-show="!uploadedImage" class="input-item__label">
+          <input type="file" @change="onFileChange" />
+        </label>
+        <div class="preview-item">
+          <img
+            v-show="uploadedImage"
+            class="preview-item-file"
+            :src="uploadedImage"
+            alt=""
+          />
+          <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
+            <p class="preview-item-name">"image"</p>
+            <!--
+            <e-icon class="preview-item-icon">close</e-icon>
+            -->
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </md-card-content>
+  </md-card>
 </template>
 
 <script>
