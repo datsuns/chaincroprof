@@ -35,5 +35,9 @@ export default {
 </script>
 
 <style scoped>
+.md-button, clean{
+  color: #ffffff;
+  background: #448aff;
+}
 </style>
 

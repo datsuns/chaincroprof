@@ -3,14 +3,13 @@
     <AppTitle
       :titleText="titleText"
     />
+
     <div class="viewport">
       <md-toolbar :md-elevation="1">
         <span class="md-title">にゅうりょく</span>
       </md-toolbar>
 
       <md-list class="md-double-line">
-        <md-divider></md-divider>
-
         <InputArea>
           <template v-slot:leftArea>
             <label for="backgroundImage">背景画像</label>
@@ -86,8 +85,6 @@
         <span class="md-title">プレビュー</span>
       </md-toolbar>
 
-      <md-divider></md-divider>
-
       <md-list class="md-double-line">
         <ProfileCanvas
           :height="650"
@@ -111,12 +108,17 @@
           v-on:updated="updateProfileImage($event)"
         />
 
-        画像位置調整
-        <button v-on:click="userPhotoStartX += 10">→</button>
-        <button v-on:click="userPhotoStartX -= 10">←</button>
-        <button v-on:click="userPhotoStartY += 10">↓</button>
-        <button v-on:click="userPhotoStartY -= 10">↑</button>
-        <br>
+        <md-card>
+          <md-card-header>
+            <div class="md-title">画像位置調整</div>
+          </md-card-header>
+          <md-card-content>
+            <md-button class="md-raised" v-on:click="userPhotoStartX += 10">→</md-button>
+            <md-button class="md-raised" v-on:click="userPhotoStartX -= 10">←</md-button>
+            <md-button class="md-raised" v-on:click="userPhotoStartY += 10">↓</md-button>
+            <md-button class="md-raised" v-on:click="userPhotoStartY -= 10">↑</md-button>
+          </md-card-content>
+        </md-card>
 
         <DownloadButton
           :labelText="dlButtonLabel"
@@ -124,19 +126,26 @@
         />
       </md-list>
     </div>
-
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
 
-Vue.use(MdButton)
-Vue.use(MdContent)
-Vue.use(MdTabs)
+//import { MdButton, MdContent, MdTabs, MdIcon, MdDivider, MdToolbar, MdList } from 'vue-material/dist/components'
+//import 'vue-material/dist/theme/default.css'
+//
+//Vue.use(MdButton)
+//Vue.use(MdContent)
+//Vue.use(MdTabs)
+//Vue.use(MdIcon)
+//Vue.use(MdDivider)
+//Vue.use(MdToolbar)
+//Vue.use(MdList)
+
+import VueMaterial from 'vue-material'
+Vue.use(VueMaterial)
 
 import ProfileCanvas  from './components/ProfileCanvas.vue'
 import UserInput      from './components/UserInput.vue'
@@ -169,10 +178,10 @@ export default {
   data () {
     return {
       titleText:       'チェンクロぷろふぃーる',
+      textFont:        'Avenir',
       fontSize:        30,
       userPhotoStartX: 45,
       userPhotoStartY: 45,
-      textFont:        'courier new',
       dlButtonLabel:   '画像ダウンロード',
       userName:        '',
       friendID:        '',
@@ -230,17 +239,32 @@ export default {
 </script>
 
 <style>
+  <link 
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons"
+  >
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size:   50px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5px;
+}
+
+.md-body-1, body {
+  font-size:   20px;
+}
+
+.md-button, clean{
+  color: #ffffff;
+  background: #0000ff;
 }
 
 .viewport {
-  width: 520px;
+  width: 800px;
   max-width: 100%;
   display: inline-block;
   vertical-align: top;

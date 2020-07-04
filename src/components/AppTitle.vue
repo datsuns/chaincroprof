@@ -1,6 +1,6 @@
 <template>
   <div>
-  <md-content class="md-primary">{{ titleText }}</md-content>
+    <md-content class="md-primary">{{ titleText }}</md-content>
   </div>
 </template>
 
@@ -16,8 +16,10 @@ export default {
 
 <style scoped>
   .md-content {
+    color: #ffffff;
+    background:       #448aff;
     font-size:        25px;
-    height:           50px;
+    height:           60px;
     display:          flex;
     justify-content:  center;
     align-items:      center;

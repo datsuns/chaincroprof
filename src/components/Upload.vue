@@ -1,7 +1,7 @@
 <template>
   <div class="contents">
     <label v-show="!uploadedImage" class="input-item__label"
-      >画像を選択
+      >プロフィール画像をUpload
       <input type="file" @change="onFileChange" />
     </label>
     <div class="preview-item">
