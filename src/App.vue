@@ -186,7 +186,6 @@ export default {
       colors:          {
           hex: '#000000',
       },
-      baseImage1:      baseProfileImage1,
       baseImages:[
         {
           name: 'ヘリオス',
