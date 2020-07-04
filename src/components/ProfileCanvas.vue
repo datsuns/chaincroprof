@@ -18,7 +18,6 @@
       {{ charactorName }}
       {{ messageText }}
       {{ profileImage }}
-      {{ checkBox1 }}
     </div>
   </div>
 </template>
@@ -43,7 +42,6 @@ export default {
     messageText: String,
     profileImage: String,
     resizedProfileImg: null,
-    checkBox1: Boolean
   },
 
   mounted () {
@@ -114,10 +112,8 @@ export default {
         ctx.drawImage(res, 0, 0)
         this.writeUserName(ctx, this.userName)
         this.writeFriendID(ctx, this.friendID)
-        //this.writeTwitterName(ctx, this.twitterName)
         this.writeCharactorName(ctx, this.charactorName)
         this.writeMessageText(ctx, this.messageText)
-        //this.drawCheckBox(ctx, this.checkBox1)
         this.emitDataURL()
       }).catch(e => {
         console.log('onload error', e);
@@ -149,18 +145,12 @@ export default {
     },
 
     writeUserName: function (ctx, name) {
-      var fontSize
+      var fontSize = 50
       var posx = 730
       var posy = 250
 
-      if( name.length <= 5 ){
-        fontSize = 50
-      }
-      else {
-        fontSize = 30
-      }
       ctx.font = fontSize + 'px' + ' ' + this.textFont
-      this.writeSimpleText(ctx, name, posx, posy)
+      this.writeSimpleText(ctx, name.slice(0, 6), posx, posy)
     },
 
     writeFriendID: function (ctx, name) {
@@ -170,26 +160,6 @@ export default {
 
       ctx.font = fontSize + 'px' + ' ' + this.textFont
       this.writeSimpleText(ctx, name, posx, posy)
-    },
-
-
-    writeTwitterName: function (ctx, name) {
-      if( name.length == 0 ){
-        return
-      }
-      var posx = 250
-      var posy = 645
-
-      var orgStyle = ctx.fillStyle
-      ctx.fillStyle = '#ff0000'
-      ctx.fillText('@' + name, posx, posy)
-      ctx.fillStyle = orgStyle
-      //ctx.beginPath()
-      //ctx.lineWidth = 8
-      //ctx.strokeStyle = '#990000'
-      //ctx.arc(posx - 65, posy - 5, 50, 0, Math.PI * 2, true)
-      //ctx.closePath()
-      //ctx.stroke()
     },
 
     writeCharactorName: function (ctx, name) {
