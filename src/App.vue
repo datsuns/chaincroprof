@@ -106,22 +106,25 @@
           :profileImage="profileImage"
           v-on:updated="updateDataURL($event)"
         />
+
+        <Upload
+          v-on:updated="updateProfileImage($event)"
+        />
+
+        画像位置調整
+        <button v-on:click="userPhotoStartX += 10">→</button>
+        <button v-on:click="userPhotoStartX -= 10">←</button>
+        <button v-on:click="userPhotoStartY += 10">↓</button>
+        <button v-on:click="userPhotoStartY -= 10">↑</button>
+        <br>
+
+        <DownloadButton
+          :labelText="dlButtonLabel"
+          :dataURL="dataURL"
+        />
       </md-list>
     </div>
 
-    <Upload
-      v-on:updated="updateProfileImage($event)"
-    />
-    画像位置調整
-    <button v-on:click="userPhotoStartX += 10">→</button>
-    <button v-on:click="userPhotoStartX -= 10">←</button>
-    <button v-on:click="userPhotoStartY += 10">↓</button>
-    <button v-on:click="userPhotoStartY -= 10">↑</button>
-    <br>
-    <DownloadButton
-      :labelText="dlButtonLabel"
-      :dataURL="dataURL"
-    />
   </div>
 </template>
 
@@ -237,7 +240,7 @@ export default {
 }
 
 .viewport {
-  width: 320px;
+  width: 520px;
   max-width: 100%;
   display: inline-block;
   vertical-align: top;
