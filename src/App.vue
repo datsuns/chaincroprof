@@ -171,7 +171,7 @@ export default {
   },
   data () {
     return {
-      titleText:       'チェンクロぷろふぃーる',
+      titleText:       'チェンクロ名刺ジェネレータ',
       textFont:        'Avenir',
       fontSize:        30,
       userPhotoStartX: 45,
