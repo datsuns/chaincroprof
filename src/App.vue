@@ -220,14 +220,12 @@ export default {
     },
 
     updateBaseImage: function (name) {
-      let entry = this.baseImages.find(x => x.name === name)
-      //this.$set(this, "baseImage", baseProfileImage6)
-      console.log("updateBaseImage")
+      const entry = this.baseImages.find(x => x.name === name)
       this.baseImage = entry.img
     },
 
     updateBaseImageTitle: function(title) {
-      let found = this.baseImages.find(x => x.name === title)
+      const found = this.baseImages.find(x => x.name === title)
       this.baseImage = found.img
     },
 
