@@ -56,6 +56,17 @@
           <label>文字色変更</label>
           <compact-picker v-model="colors" @input="updateTextColor"></compact-picker>
         </md-list-item>
+
+        <md-list-item>
+          <md-field>
+            <label for="drawFont">フォント変更</label>
+            <md-select v-model="textFont" name="textFont" >
+            <md-option value="Tetsubin">男前</md-option>
+            <md-option value="Avenir">元に戻す</md-option>
+            <md-option value="FgZero">戦闘機</md-option>
+            </md-select>
+          </md-field>
+        </md-list-item>
       </md-list>
     </div>
 
