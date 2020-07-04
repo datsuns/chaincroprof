@@ -6,13 +6,13 @@
 
     <div class="viewport">
       <md-toolbar :md-elevation="1">
-        <span class="md-title">にゅうりょくしてください</span>
+        <span class="md-title">こちらに入力！</span>
       </md-toolbar>
 
       <md-list class="md-double-line">
         <md-list-item>
           <md-field>
-            <label for="backgroundImage">背景イメージ</label>
+            <label for="backgroundImage">背景イメージ選択</label>
             <md-select v-model="baseImageTitle" name="baseImageTitle" @md-selected="updateBaseImageTitle(baseImageTitle)">
             <md-option value=ヘリオス>ヘリオス</md-option>
             <md-option value="アリーチェ">アリーチェ</md-option>
