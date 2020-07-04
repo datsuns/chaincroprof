@@ -47,15 +47,11 @@ export default {
   },
 
   mounted () {
-    // called from Runtime on initial
-    console.log("mounted")
     this.draw()
     this.emitDataURL()
   },
 
   updated () {
-    console.log("updated")
-    console.log(this.textColor)
     this.draw()
     this.emitDataURL()
   },
@@ -80,7 +76,6 @@ export default {
     },
 
     resizeImage: function(src, x, y) {
-      console.log("resize start")
       return new Promise((loaded) => {
         blueimpLoadImage.parseMetaData(src, () => {
           const options = {
@@ -98,7 +93,6 @@ export default {
               // objectのURLを生成
               const url = window.URL.createObjectURL(blob)
 
-              console.log("resize done")
               loaded(url)
             },
             options
@@ -108,8 +102,6 @@ export default {
     },
 
     drawBaseImageMain: function (ctx) {
-      console.log("draw")
-      console.log(this.baseImage)
       this.loadImage(this.baseImage).then(res => {
         ctx.font = this.fontSize + 'px' + ' ' + this.textFont
         ctx.drawImage(res, 0, 0)
@@ -131,7 +123,6 @@ export default {
     },
 
     drawBaseImage: function (userProfileImage) {
-      console.log("drawBaseImage")
       const cv = document.getElementById('cv')
       const ctx = cv.getContext('2d')
 
@@ -247,7 +238,6 @@ export default {
 
     emitDataURL: function () {
       const dataURL = document.getElementById('cv').toDataURL('image/png')
-      //console.log(dataURL)
       this.$emit('updated', dataURL)
     }
   },
