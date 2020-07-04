@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <AppTitle
-      :titleText="titleText"
-    />
+    <AppTitle :titleText="titleText" />
 
     <div class="viewport">
       <md-toolbar :md-elevation="1">
@@ -125,6 +123,11 @@
           :dataURL="dataURL"
         />
       </md-list>
+    </div>
+    <div>
+      <a href="https://github.com/chainchroprof/prof7th" target="_blank">source code(github)</a>
+      <br>
+      <a href="https://twitter.com/datsuns" target="_blank">by @datsuns</a>
     </div>
   </div>
 </template>
