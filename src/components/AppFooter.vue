@@ -18,6 +18,7 @@
       </md-card-content>
     </md-card>
 
+    <!--
     <md-card>
       <md-dialog :md-active.sync="showChangeLog">
         <md-dialog-title>更新履歴</md-dialog-title>
@@ -32,6 +33,14 @@
         </md-dialog-actions>
       </md-dialog>
       <md-button class="md-primary md-raised" @click="showChangeLog = true">更新履歴</md-button>
+    </md-card>
+    -->
+    <md-card>
+      <md-card-content>
+        <div class="md-subhead">更新履歴</div>
+        <div class="md-subhead">2020.07.05: フォント変えられまっせー</div>
+        <div class="md-subhead">2020.07.04: とりあえず作りましたぜー</div>
+      </md-card-content>
     </md-card>
   </div>
 </template>
