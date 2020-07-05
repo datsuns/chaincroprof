@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <head>
+      <link 
+        rel="stylesheet"
+        href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons"
+      >
+    </head>
     <AppTitle :titleText="titleText" />
 
     <div class="viewport">
@@ -117,15 +123,8 @@
         />
       </md-list>
     </div>
-    <div>
-      ベースの画像は公式サイトのものを利用しています →  
-      <a href="http://chronicle.sega-net.com/7th_chain/" target="_blank">チェインクロニクル3 7周年特設サイト</a>
-    </div>
-    <div>
-      <a href="https://github.com/chainchroprof/prof7th" target="_blank">source code(github)</a>
-      <br>
-      <a href="https://twitter.com/datsuns" target="_blank">by @datsuns</a>
-    </div>
+
+    <AppFooter/>
   </div>
 </template>
 
@@ -133,6 +132,7 @@
 import Vue from 'vue'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+//import 'vue-material/dist/theme/default-dark.css'
 
 //import { MdButton, MdContent, MdTabs, MdIcon, MdDivider, MdToolbar, MdList } from 'vue-material/dist/components'
 //
@@ -151,6 +151,7 @@ import ProfileCanvas  from './components/ProfileCanvas.vue'
 import Upload         from './components/Upload.vue'
 import DownloadButton from './components/DownloadButton.vue'
 import AppTitle       from './components/AppTitle.vue'
+import AppFooter      from './components/AppFooter.vue'
 
 import baseProfileImage1 from "./assets/images_common_card_01a.png"
 import baseProfileImage2 from "./assets/images_common_card_02a.png"
@@ -168,6 +169,7 @@ export default {
     Upload,
     DownloadButton,
     AppTitle,
+    AppFooter,
     'compact-picker': Compact
   },
   data () {
@@ -269,10 +271,6 @@ export default {
 </script>
 
 <style >
-  <link 
-    rel="stylesheet"
-    href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons"
-  >
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif, Tetsubin, FgZero;
@@ -293,4 +291,3 @@ export default {
   border: 1px solid rgba(#000, .12);
 }
 </style>
-
