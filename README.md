@@ -1,24 +1,8 @@
-# chaincroprof 
+# チェンクロプロフィール画像ジェネレータ
 
-## Project setup
-```
-yarn install
-```
+# 使ったリソース
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* 鉄瓶フォント
+   * http://fontfree.me/blog/104
+* FGゼロラバウル
+   * https://fontgraphic.jp/fg_zerorabaul
